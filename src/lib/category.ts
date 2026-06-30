@@ -1,15 +1,25 @@
 /**
- * Agent category → signal color. Colors are the builder's node-tag palette
- * (tokens.css) so a "Lyrics" agent here reads the same cyan as a Suede Tools
- * node there. Unknown categories hash into the palette deterministically.
+ * Agent category → signal color, drawn from the builder's node-tag palette
+ * (tokens.css) so the tracker stays a Suede family member. Unknown categories
+ * hash into the palette deterministically.
  */
 const CATEGORY_COLOR: Record<string, string> = {
-  Lyrics: "var(--registry-cyan)",
-  Audio: "var(--verified-emerald)",
-  Discovery: "var(--violet)",
-  Royalties: "var(--amber)",
-  Artwork: "var(--proof-sky)",
-  Mastering: "var(--primary)",
+  Scraping: "var(--registry-cyan)",
+  Documents: "var(--proof-sky)",
+  Code: "var(--primary)",
+  NLP: "var(--violet)",
+  Maps: "var(--verified-emerald)",
+  Language: "var(--registry-cyan)",
+  Markets: "var(--amber)",
+  Vision: "var(--proof-sky)",
+  Email: "var(--violet)",
+  Compliance: "var(--amber)",
+  Weather: "var(--proof-sky)",
+  Moderation: "var(--violet)",
+  SEO: "var(--verified-emerald)",
+  Sports: "var(--amber)",
+  Analytics: "var(--primary)",
+  Data: "var(--registry-cyan)",
 };
 
 const PALETTE = [
@@ -28,3 +38,6 @@ export function categoryColor(category: string): string {
   for (let i = 0; i < category.length; i++) h = (h * 31 + category.charCodeAt(i)) >>> 0;
   return PALETTE[h % PALETTE.length];
 }
+
+/** Categories offered in the add-agent form (free text also allowed). */
+export const CATEGORY_OPTIONS = Object.keys(CATEGORY_COLOR);

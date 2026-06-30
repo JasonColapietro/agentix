@@ -16,20 +16,22 @@ Supabase / better-sqlite3 · vitest. Shares the Suede design system with the res
 
 ## Status
 
-**MVP built on seed data.** The `/` portfolio dashboard (headline tiles, 90-day revenue trend,
-sortable agent table) and `/agent/[id]` detail (earnings curve, call-volume bars, endpoint
-health, recent runs) are live and rendering. Every figure currently comes from a deterministic
-**seed provider** so the UI is real before the earnings source is wired.
+**Manual-input tracker (single operator).** You register the agents you want to track and log
+their earnings by hand — Agentix organizes and visualizes it. The `/` dashboard (headline tiles,
+90-day revenue trend, sortable agent table) and `/agent/[id]` detail (earnings curve, call-volume
+bars, endpoint health, logged-days ledger) render from **your entries**, persisted in
+`localStorage`. Until you add anything, a large non-music **example portfolio** stands in as a
+populated demo.
 
-The whole app reads through one seam — `PortfolioProvider` in
-[`src/lib/data/provider.ts`](src/lib/data/provider.ts) — so the real source drops in behind the
-same interface with **no UI changes**. Source is env-selected via `AGENTIX_DATA_SOURCE`
-(`seed` today; `settlement` / `builder-api` / `onchain` stubbed for when open question #1 lands).
+- **Add / edit / delete agents** (name, category, price, status, x402 URL, payout wallet).
+- **Log a day** per agent (date · calls · revenue · errors) — builds the trend.
+- Everything reads through one seam — the read-models in
+  [`src/lib/data/aggregate.ts`](src/lib/data/aggregate.ts), fed by either the example seed or the
+  [`local-store`](src/lib/data/local-store.ts). A hosted DB (Supabase / Vercel Postgres) drops in
+  behind the same surface for cross-device + multi-user without UI changes.
 
-> **Open before the real data layer:** the earnings source of truth (SPEC open question #1).
-> The builder already computes per-agent `calls`/`earnedUsdc`/`settledUsdc`, but only returns
-> the last 25 runs — so the historical earnings curve needs raw `runs` from the shared store.
-> See `docs/SPEC.md`.
+> Optional future enrichment (not the primary source): import earnings from the builder's
+> settlement `runs`, or read payout wallets on-chain via `viem`. See [`docs/SPEC.md`](docs/SPEC.md).
 
 ## Develop
 

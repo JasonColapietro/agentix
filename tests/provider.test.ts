@@ -34,10 +34,10 @@ describe("SeedProvider", () => {
   });
 
   it("resolves an agent by id and by slug", async () => {
-    const byId = await provider.getAgent("agt_lyric_doctor");
-    expect(byId?.name).toBe("Lyric Doctor");
-    const bySlug = await provider.getAgent("lyric-doctor");
-    expect(bySlug?.id).toBe("agt_lyric_doctor");
+    const byId = await provider.getAgent("agt_web_scraper_pro");
+    expect(byId?.name).toBe("Web Scraper Pro");
+    const bySlug = await provider.getAgent("web-scraper-pro");
+    expect(bySlug?.id).toBe("agt_web_scraper_pro");
     expect(byId!.daily.length).toBeGreaterThan(0);
     expect(byId!.recentRuns.length).toBeGreaterThan(0);
   });

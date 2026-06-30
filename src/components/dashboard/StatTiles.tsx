@@ -38,11 +38,10 @@ function Figure({ children }: { children: React.ReactNode }) {
 
 export function StatTiles({ summary }: { summary: PortfolioSummary }) {
   const last7 = summary.trend.slice(-7).map((p) => p.revenueUsdc);
-  const takePct = Math.round(summary.platformTakeRate * 100);
 
   return (
     <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      <Tile label="Total earned" sub={`gross ${compactUsd(summary.totalGrossUsdc)} · net of ${takePct}% platform take`}>
+      <Tile label="Total earned" sub={`${compactUsd(summary.totalGrossUsdc)} gross at list price`}>
         <Figure>{usd(summary.totalRevenueUsdc)}</Figure>
       </Tile>
 

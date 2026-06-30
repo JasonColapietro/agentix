@@ -131,3 +131,28 @@ not the UI. 20 vitest tests pass; production build clean; deployed (below).
 **Next (when the domain is settled):** build `SettlementDbProvider` against the
 shared store, flip `AGENTIX_DATA_SOURCE=settlement`, wire `getCurrentOwner()` to the
 `agx_owner` session, then alias the chosen domain.
+
+## Direction update — manual-input pivot (2026-06-30, later)
+
+Jason redirected: **Agentix is primarily a tracker based on info people put in**, not an
+auto-sync from the builder. So the product is now a **manual-input tracker** you populate
+yourself — register the agents you want to watch, log their earnings by hand. The builder
+settlement DB / on-chain reads are demoted to *optional future enrichment*, not the primary source.
+
+Resolved with Jason for this round:
+- **Input model:** earnings/calls are **typed in by hand** (per-day snapshots build the trend);
+  agent metadata (name / x402 URL / price / category / wallet / status) is registered manually.
+- **Scope:** **single operator** for now (ship fast). Persistence is `localStorage` (per-browser).
+  A hosted DB (Supabase / Vercel Postgres) is the cross-device + multi-user upgrade, behind the
+  same read-model surface.
+- **Example data:** a **large non-music** portfolio (~18 generic x402 agents — scraping, code,
+  markets, vision, NLP, maps, compliance…) stands in as the empty-state demo until the operator
+  adds their own.
+
+Architecture:
+- Read-models live in `src/lib/data/aggregate.ts` (pure, take-agnostic). Both the seed example
+  (`seed.ts` / `seed-provider.ts`) and the manual store (`local-store.ts`) feed through it.
+- `local-store.ts` = localStorage CRUD (`addAgent` / `updateAgent` / `removeAgent` / `logEntry`)
+  + example fallback. Pages (`/`, `/agent/[id]`) render client apps (`PortfolioApp`,
+  `AgentDetailApp`) that read it; SSR shows the deterministic example so the public sees content.
+- Input UI: `components/input/` (`AgentForm`, `LogEarningsForm`, `Modal`).
