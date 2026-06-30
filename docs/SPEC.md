@@ -53,7 +53,7 @@ Earning    { agentId, ts, callId, amountUsdc, settled }   // one row per paid ca
 DailyRoll  { agentId, day, calls, revenueUsdc, errors }    // pre-aggregated for charts
 ```
 
-## Open questions — RESOLVE BEFORE BUILDING DATA LAYER (ask Jason)
+## Open questions — RESOLVED 2026-06-30 (see "Build state" at the bottom)
 
 1. **Earnings source of truth?** Three options, pick one:
    (a) on-chain reads of each agent's payout address on Base via `viem` (trustless, but noisy —
@@ -86,3 +86,44 @@ DailyRoll  { agentId, day, calls, revenueUsdc, errors }    // pre-aggregated for
   how paid calls are metered/settled (the likely earnings source).
 - `~/code/suede-agent-studio/src/app/rankings`, `src/app/grade` — the public surfaces to link to,
   not duplicate.
+
+## Build state + resolved decisions (2026-06-30)
+
+MVP is built on a **deterministic seed provider** behind the typed
+`PortfolioProvider` seam (`src/lib/data/provider.ts`) — swap the implementation,
+not the UI. 20 vitest tests pass; production build clean; deployed (below).
+
+**Resolved with Jason:**
+
+1. **Earnings source of truth → builder settlement DB.** Read the builder's shared
+   store (`studio.db` dev / Supabase prod) `runs` table directly; Agentix owns the
+   daily time-series. `/api/me` only returns the last 25 runs, so the earnings
+   curve needs raw `runs`. Wire as `AGENTIX_DATA_SOURCE=settlement`.
+   - Map: `runs(agent_id, trigger='agent', settled_at, total_cost_usdc, started_at)` →
+     calls/curve; `agents(id, flow_id, slug, price_usdc, settlement_live)`; name ←
+     `flows.name`; payout ← `wallets.address` via `flows.owner_id`.
+     Creator share = settled × price × (1 − 0.05 platform take).
+2. **Auth → share the builder's session.** Reuse the `agx_owner` cookie / owner-id
+   so a logged-in user sees *their* agents; resolve in `getCurrentOwner()`.
+3. **Own data vs builder API → own the time-series**, link to the builder's public
+   surfaces (rankings/grade — footer already links them), don't re-implement.
+
+**Deployed (seed demo):**
+
+- GitHub: <https://github.com/JasonColapietro/agentix> (public, `main`).
+- Vercel: project **`agentix-tracker`** → <https://agentix-tracker.vercel.app>.
+
+**⚠️ Name + domain conflict — needs Jason's call BEFORE aliasing `agentix.suedeai.ai`:**
+
+- `agentix.suedeai.ai` already serves a **different live, SEO-indexed product**:
+  *"Agentix — Grade any AI agent, S to F"* (an agent grader). It is NOT this tracker.
+- The Vercel project literally named **`agentix`** is the **builder** (agents.suedeai.ai).
+- So the tracker shipped as `agentix-tracker` to avoid clobbering either one.
+- Decision needed: (a) repoint `agentix.suedeai.ai` to the tracker — **replaces the
+  live grader**; (b) host the tracker on a different domain (e.g. `track.` /
+  `portfolio.suedeai.ai`); and/or (c) reconcile the shared "Agentix" name across
+  the two products. Until then, the tracker lives at `agentix-tracker.vercel.app`.
+
+**Next (when the domain is settled):** build `SettlementDbProvider` against the
+shared store, flip `AGENTIX_DATA_SOURCE=settlement`, wire `getCurrentOwner()` to the
+`agx_owner` session, then alias the chosen domain.
