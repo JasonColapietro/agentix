@@ -78,3 +78,45 @@ export function DeltaPill({ fraction, className = "" }: { fraction: number; clas
 export function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="eyebrow">{children}</p>;
 }
+
+export function ProgressBar({ value, max, color = "var(--primary)", height = 8 }: { value: number; max: number; color?: string; height?: number }) {
+  const pct = max > 0 ? Math.min(100, (value / max) * 100) : 0;
+  const reached = max > 0 && value >= max;
+  return (
+    <div style={{ height, borderRadius: 999, background: "var(--canvas-bg)", overflow: "hidden", border: "1px solid var(--hairline)" }}>
+      <div style={{ width: `${pct}%`, height: "100%", background: reached ? "var(--verified-emerald)" : color, borderRadius: 999, transition: "width .45s ease" }} />
+    </div>
+  );
+}
+
+export function Segmented<T extends string>({ options, value, onChange }: { options: { value: T; label: string }[]; value: T; onChange: (v: T) => void }) {
+  return (
+    <div className="inline-flex" style={{ border: "1px solid var(--hairline)", borderRadius: 999, padding: 2, background: "var(--ink-control)" }}>
+      {options.map((o) => {
+        const active = o.value === value;
+        return (
+          <button
+            key={o.value}
+            type="button"
+            onClick={() => onChange(o.value)}
+            className="mono"
+            aria-pressed={active}
+            style={{
+              border: "none",
+              cursor: "pointer",
+              padding: "4px 12px",
+              borderRadius: 999,
+              fontSize: "var(--text-xs)",
+              fontWeight: active ? 600 : 450,
+              color: active ? "var(--on-primary)" : "var(--text-muted)",
+              background: active ? "var(--primary)" : "transparent",
+              transition: "color .15s, background .15s",
+            }}
+          >
+            {o.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}

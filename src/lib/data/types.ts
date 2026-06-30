@@ -79,8 +79,26 @@ export interface AgentStats {
   spark: number[];
 }
 
+export type GradeLetter = "S" | "A" | "B" | "C" | "D" | "F";
+
+export interface GradeBreakdown {
+  revenue: number; // each 0..1
+  growth: number;
+  consistency: number;
+  reliability: number;
+  activity: number;
+}
+
+export interface Grade {
+  letter: GradeLetter;
+  score: number; // 0..100
+  color: string; // css var
+  breakdown: GradeBreakdown;
+}
+
 export interface AgentWithStats extends Agent {
   stats: AgentStats;
+  grade?: Grade;
 }
 
 export interface PortfolioSummary {

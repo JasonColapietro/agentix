@@ -16,19 +16,22 @@ Supabase / better-sqlite3 · vitest. Shares the Suede design system with the res
 
 ## Status
 
-**Manual-input tracker (single operator).** You register the agents you want to track and log
-their earnings by hand — Agentix organizes and visualizes it. The `/` dashboard (headline tiles,
-90-day revenue trend, sortable agent table) and `/agent/[id]` detail (earnings curve, call-volume
-bars, endpoint health, logged-days ledger) render from **your entries**, persisted in
-`localStorage`. Until you add anything, a large non-music **example portfolio** stands in as a
-populated demo.
+**Manual-input tracker that grades your agents (single operator).** You register the agents you
+want to track and log their earnings by hand; Agentix organizes, visualizes, and **grades** them.
+Everything renders from **your entries**, persisted in `localStorage`. Until you add anything, a
+large non-music **example portfolio** stands in as a populated demo.
 
-- **Add / edit / delete agents** (name, category, price, status, x402 URL, payout wallet).
-- **Log a day** per agent (date · calls · revenue · errors) — builds the trend.
-- Everything reads through one seam — the read-models in
-  [`src/lib/data/aggregate.ts`](src/lib/data/aggregate.ts), fed by either the example seed or the
-  [`local-store`](src/lib/data/local-store.ts). A hosted DB (Supabase / Vercel Postgres) drops in
-  behind the same surface for cross-device + multi-user without UI changes.
+- **Grading** — every agent earns an S–F grade from revenue, growth, consistency, reliability, and
+  activity ([`src/lib/data/grade.ts`](src/lib/data/grade.ts)); the portfolio gets a revenue-weighted
+  grade, and the leaderboard ranks them.
+- **Inline everything (no modals)** — add / edit / delete agents and log a day directly on the page.
+- **Richer analytics** — Performance panel with Revenue / Cumulative / Calls × 7D / 30D / All
+  toggles, a revenue **allocation** breakdown, and per-agent grade breakdowns.
+- **Search, filter, sort** the leaderboard; **goals** — set a revenue target per agent and for the
+  whole portfolio, with progress bars.
+- One read-model seam ([`src/lib/data/aggregate.ts`](src/lib/data/aggregate.ts)) feeds from either
+  the example seed or the [`local-store`](src/lib/data/local-store.ts). A hosted DB (Supabase /
+  Vercel Postgres) drops in behind the same surface for cross-device + multi-user without UI changes.
 
 > Optional future enrichment (not the primary source): import earnings from the builder's
 > settlement `runs`, or read payout wallets on-chain via `viem`. See [`docs/SPEC.md`](docs/SPEC.md).
