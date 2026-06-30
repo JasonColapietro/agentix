@@ -113,16 +113,20 @@ not the UI. 20 vitest tests pass; production build clean; deployed (below).
 - GitHub: <https://github.com/JasonColapietro/agentix> (public, `main`).
 - Vercel: project **`agentix-tracker`** → <https://agentix-tracker.vercel.app>.
 
-**⚠️ Name + domain conflict — needs Jason's call BEFORE aliasing `agentix.suedeai.ai`:**
+**Name + domain conflict — RESOLVED 2026-06-30 (Jason: "push to agentix site"):**
 
-- `agentix.suedeai.ai` already serves a **different live, SEO-indexed product**:
-  *"Agentix — Grade any AI agent, S to F"* (an agent grader). It is NOT this tracker.
-- The Vercel project literally named **`agentix`** is the **builder** (agents.suedeai.ai).
-- So the tracker shipped as `agentix-tracker` to avoid clobbering either one.
-- Decision needed: (a) repoint `agentix.suedeai.ai` to the tracker — **replaces the
-  live grader**; (b) host the tracker on a different domain (e.g. `track.` /
-  `portfolio.suedeai.ai`); and/or (c) reconcile the shared "Agentix" name across
-  the two products. Until then, the tracker lives at `agentix-tracker.vercel.app`.
+- **`agentix.suedeai.ai` now points to the tracker** (Vercel project `agentix-tracker`,
+  deployment aliased). It previously served a different live product —
+  *"Agentix — Grade any AI agent, S to F"* (a grader) — which was **displaced** from the
+  domain. That grader's Vercel project still exists, so this is reversible by
+  re-aliasing the domain back to it.
+- **Still true / still a footgun:** the Vercel project literally named **`agentix`** is
+  the **builder** (agents.suedeai.ai). Never `vercel --prod` the tracker into it — the
+  tracker's project is **`agentix-tracker`**. The domain alias is currently pinned to a
+  specific deployment, so a future `vercel --prod` won't auto-update it; re-alias (or wire
+  Git auto-deploy) when redeploying.
+- **Open (brand):** two products still share the "Agentix" name (this tracker + the
+  displaced grader) — reconciliation is a separate decision.
 
 **Next (when the domain is settled):** build `SettlementDbProvider` against the
 shared store, flip `AGENTIX_DATA_SOURCE=settlement`, wire `getCurrentOwner()` to the
