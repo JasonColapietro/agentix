@@ -1,0 +1,94 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+@theme inline {
+  --color-ink-deep: var(--ink-deep);
+  --color-ink-panel: var(--ink-panel);
+  --color-ink-control: var(--ink-control);
+  --color-canvas: var(--canvas-bg);
+  --color-primary: var(--primary);
+  --color-registry-cyan: var(--registry-cyan);
+  --color-verified-emerald: var(--verified-emerald);
+  --color-violet: var(--violet);
+  --color-amber: var(--amber);
+  --color-proof-sky: var(--proof-sky);
+  --color-rights-red: var(--rights-red);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+  --color-text-primary: var(--text-primary);
+  --color-text-muted: var(--text-muted);
+  --color-hairline: var(--hairline);
+  --font-display: var(--font-display);
+  --font-ui: var(--font-ui);
+  --font-mono: var(--font-mono);
+}
+
+html,
+body {
+  background: var(--ink-deep);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-weight: 450;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  font-size: var(--text-eyebrow);
+  color: var(--text-muted);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.hairline {
+  border-color: var(--hairline);
+}
+
+.card {
+  background: var(--ink-control);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+/* Recessed ledger/chart pane — the one place we depart from flat white. */
+.pane {
+  background: var(--canvas-bg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+/* Respect reduced-motion for the few transitions we use. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -27,3 +27,6 @@ next-env.d.ts
 *.db
 *.db-shm
 *.db-wal
+
+# claude code local tooling + worktrees (this dir holds .claude/worktrees/*)
+.claude/

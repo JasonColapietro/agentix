@@ -16,5 +16,27 @@ Supabase / better-sqlite3 · vitest. Shares the Suede design system with the res
 
 ## Status
 
-Scaffold only. See `docs/SPEC.md` for the MVP screens, data model, and the open questions to
-resolve with Jason before building the earnings data layer.
+**MVP built on seed data.** The `/` portfolio dashboard (headline tiles, 90-day revenue trend,
+sortable agent table) and `/agent/[id]` detail (earnings curve, call-volume bars, endpoint
+health, recent runs) are live and rendering. Every figure currently comes from a deterministic
+**seed provider** so the UI is real before the earnings source is wired.
+
+The whole app reads through one seam — `PortfolioProvider` in
+[`src/lib/data/provider.ts`](src/lib/data/provider.ts) — so the real source drops in behind the
+same interface with **no UI changes**. Source is env-selected via `AGENTIX_DATA_SOURCE`
+(`seed` today; `settlement` / `builder-api` / `onchain` stubbed for when open question #1 lands).
+
+> **Open before the real data layer:** the earnings source of truth (SPEC open question #1).
+> The builder already computes per-agent `calls`/`earnedUsdc`/`settledUsdc`, but only returns
+> the last 25 runs — so the historical earnings curve needs raw `runs` from the shared store.
+> See `docs/SPEC.md`.
+
+## Develop
+
+```bash
+npm install
+npm run dev        # http://localhost:3000 (or: -p 3300)
+npm run build      # production build
+npm test           # vitest (data layer + formatters)
+npm run typecheck  # tsc --noEmit
+```
