@@ -45,6 +45,12 @@ export function PortfolioApp() {
         {/* hero */}
         <header className="mb-8">
           <p className="eyebrow mb-3">Portfolio · as of {asOf}</p>
+          <p className="mb-3" style={{ color: "var(--text-muted)", fontSize: "var(--text-sm)" }}>
+            This is the earnings tracker. To build and launch an agent, go to{" "}
+            <a href="https://agents.suedeai.ai" target="_blank" rel="noreferrer" style={{ color: "var(--text-muted)", textDecoration: "underline" }}>
+              agents.suedeai.ai
+            </a>.
+          </p>
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div className="flex items-center gap-5">
               <GradeBadge grade={portfolioGrade} size="xl" />
