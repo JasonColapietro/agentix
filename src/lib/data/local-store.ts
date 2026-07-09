@@ -14,7 +14,7 @@ import type {
   Grade,
   PortfolioSummary,
 } from "./types";
-import { dayKey, windowKeys } from "./dates";
+import { windowKeys } from "./dates";
 import { delta7d, detailFor, summarize, withStatsAll } from "./aggregate";
 import { gradeAgent, gradePortfolio } from "./grade";
 import { exampleData } from "./seed-provider";
@@ -167,9 +167,10 @@ export function clearAll(): void {
 // ── read models ──────────────────────────────────────────────────────────────
 function agentDaily(agent: Agent, entries: DailyRoll[], now: Date): DailyRoll[] {
   const byDay = new Map(entries.filter((e) => e.agentId === agent.id).map((e) => [e.day, e]));
-  const launchDay = dayKey(new Date(agent.launchedAt));
-  return windowKeys(now)
-    .filter((d) => d >= launchDay)
+  const days = new Set(windowKeys(now));
+  for (const d of byDay.keys()) days.add(d);
+  return [...days]
+    .sort()
     .map((d) => byDay.get(d) ?? { agentId: agent.id, day: d, calls: 0, revenueUsdc: 0, errors: 0 });
 }
 
@@ -198,8 +199,7 @@ function exampleModels(): Models {
   };
 }
 
-function realModels(now: Date): Models {
-  const s = loadState();
+function realModels(s: StoredState, now: Date): Models {
   const dailyByAgent = new Map(s.agents.map((a) => [a.id, agentDaily(a, s.entries, now)]));
   return {
     examples: false,
@@ -214,7 +214,8 @@ function realModels(now: Date): Models {
 }
 
 function models(now: Date): Models {
-  return usingExamples() ? exampleModels() : realModels(now);
+  const s = loadState();
+  return usingExamples(s) ? exampleModels() : realModels(s, now);
 }
 
 function gradeFor(a: AgentWithStats, daily: DailyRoll[], maxRev: number, now: Date): Grade {
