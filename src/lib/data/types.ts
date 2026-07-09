@@ -128,12 +128,3 @@ export interface AgentDetail extends AgentWithStats {
   /** Revenue change: last 7 days vs prior 7 days, as a fraction. */
   delta7d: number;
 }
-
-/** The seam the whole app reads through. Swap the implementation, not the UI. */
-export interface PortfolioProvider {
-  /** Identifier of the data source, surfaced in the UI footer for honesty. */
-  readonly sourceLabel: string;
-  getSummary(ownerWallet: string): Promise<PortfolioSummary>;
-  listAgents(ownerWallet: string): Promise<AgentWithStats[]>;
-  getAgent(agentId: string): Promise<AgentDetail | null>;
-}
