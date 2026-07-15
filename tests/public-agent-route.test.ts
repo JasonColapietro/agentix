@@ -76,6 +76,14 @@ describe("public agent routes", () => {
     expect(homepage.metadata.alternates?.canonical).toBe(SITE_URL);
   });
 
+  it("gives the homepage one visible, answer-ready H1", () => {
+    const portfolio = readFileSync("src/components/PortfolioApp.tsx", "utf8");
+
+    expect(portfolio.match(/<h1\b/g)).toHaveLength(1);
+    expect(portfolio).toContain("Agent portfolio earnings tracker");
+    expect(portfolio).not.toMatch(/<h1[^>]+(?:sr-only|hidden)/);
+  });
+
   it("lists stable public agent detail URLs in the sitemap", () => {
     const urls = sitemap().map((entry) => entry.url);
 
