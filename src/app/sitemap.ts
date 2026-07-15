@@ -1,10 +1,7 @@
 import type { MetadataRoute } from "next";
+import { publicAgentData } from "@/lib/data/seed-provider";
 import { SITE_URL } from "@/lib/site";
 
-/**
- * Only the homepage is listed: /agent/[id] pages render the operator's own
- * local/seed portfolio data, so they aren't stable public URLs worth indexing.
- */
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
@@ -12,5 +9,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    ...publicAgentData().map(({ agent }) => ({
+      url: `${SITE_URL}/agent/${encodeURIComponent(agent.id)}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.6,
+    })),
   ];
 }

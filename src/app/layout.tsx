@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
-import { SITE_URL } from "@/lib/site";
+import { OG_IMAGE_URL, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const geist = Geist({ variable: "--font-geist", subsets: ["latin"] });
@@ -15,9 +15,6 @@ const SITE_NAME = "Agentix";
 const DEFAULT_TITLE = "Agentix — watch your agents earn";
 const DEFAULT_DESCRIPTION =
   "The portfolio tracker for the x402 agents you've launched. Total USDC earned on Base, calls, per-agent performance, status, and trend — one screen.";
-// Shared Suede OG image until Agentix has a dedicated one.
-const OG_IMAGE = "https://app.suedeai.ai/opengraph.png";
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -40,7 +37,6 @@ export const metadata: Metadata = {
   authors: [{ name: "Jason Colapietro", url: "https://github.com/JasonColapietro" }],
   creator: "Jason Colapietro",
   publisher: "Suede Labs AI",
-  alternates: { canonical: SITE_URL },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -48,7 +44,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
-    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
+    images: [{ url: OG_IMAGE_URL, width: 1200, height: 630, alt: SITE_NAME }],
   },
   twitter: {
     card: "summary_large_image",
@@ -56,7 +52,7 @@ export const metadata: Metadata = {
     creator: "@johnnysuede",
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
-    images: [OG_IMAGE],
+    images: [OG_IMAGE_URL],
   },
 };
 
@@ -83,7 +79,6 @@ const jsonLd = {
       operatingSystem: "Web",
       author: { "@id": JASON_PERSON_ID },
       publisher: { "@id": SUEDE_ORG_ID },
-      isRelatedTo: { "@id": "https://agents.suedeai.ai/#app" },
     },
     {
       "@type": "Organization",

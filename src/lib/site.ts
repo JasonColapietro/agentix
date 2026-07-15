@@ -12,6 +12,9 @@ export const SITE_URL =
 export const BUILDER_URL =
   process.env.NEXT_PUBLIC_BUILDER_URL ?? "https://agents.suedeai.ai";
 
+/** Shared Suede social card until Agentix has a dedicated image. */
+export const OG_IMAGE_URL = "https://app.suedeai.ai/opengraph.png";
+
 /** Deep links into the builder's public surfaces (link, don't duplicate). */
 export const builderLinks = {
   rankings: `${BUILDER_URL}/rankings/best-ai-agent-builders`,
