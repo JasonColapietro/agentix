@@ -29,4 +29,5 @@ next-env.d.ts
 *.db-wal
 
 # claude code local tooling + worktrees (this dir holds .claude/worktrees/*)
-.claude/
+.claude/*
+!.claude/settings.json
