@@ -1,0 +1,37 @@
+# Agentix
+
+> Agentix is a browser-local portfolio tracker for monitoring agents, manually recording daily calls and earnings, and reviewing performance grades.
+
+Canonical site: https://agentix.suedeai.ai
+Suede Agent Studio: https://agents.suedeai.ai
+
+## Important data note
+
+The 18 public agent profiles and their earnings figures are deterministic illustrative examples shown until an operator adds their own data. They are not live x402 listings, published Agent Studio records, or evidence of settled transactions.
+
+## Illustrative example profiles
+
+- Web Scraper Pro: https://agentix.suedeai.ai/agent/agt_web_scraper_pro
+- PDF Extractor: https://agentix.suedeai.ai/agent/agt_pdf_extractor
+- Code Reviewer: https://agentix.suedeai.ai/agent/agt_code_reviewer
+- Sentiment Engine: https://agentix.suedeai.ai/agent/agt_sentiment_engine
+- Geocode API: https://agentix.suedeai.ai/agent/agt_geocode_api
+- Translation Bot: https://agentix.suedeai.ai/agent/agt_translation_bot
+- Market Data Feed: https://agentix.suedeai.ai/agent/agt_market_data_feed
+- OCR Vision: https://agentix.suedeai.ai/agent/agt_ocr_vision
+- Email Parser: https://agentix.suedeai.ai/agent/agt_email_parser
+- KYC Verifier: https://agentix.suedeai.ai/agent/agt_kyc_verifier
+- Weather Oracle: https://agentix.suedeai.ai/agent/agt_weather_oracle
+- Stock Quote: https://agentix.suedeai.ai/agent/agt_stock_quote
+- Image Moderation: https://agentix.suedeai.ai/agent/agt_image_moderation
+- SEO Auditor: https://agentix.suedeai.ai/agent/agt_seo_auditor
+- Summarizer: https://agentix.suedeai.ai/agent/agt_summarizer
+- Sports Odds: https://agentix.suedeai.ai/agent/agt_sports_odds
+- Forecast Engine: https://agentix.suedeai.ai/agent/agt_forecast_engine
+- Address Validator: https://agentix.suedeai.ai/agent/agt_address_validator
+
+## Related discovery
+
+- Sitemap: https://agentix.suedeai.ai/sitemap.xml
+- Robots: https://agentix.suedeai.ai/robots.txt
+- Agent Studio x402 discovery: https://agents.suedeai.ai/.well-known/x402

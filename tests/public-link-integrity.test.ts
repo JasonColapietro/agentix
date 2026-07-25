@@ -5,6 +5,29 @@ import { publicAgentData } from "@/lib/data/seed-provider";
 import { SITE_URL } from "@/lib/site";
 
 describe("public example link integrity", () => {
+  it("publishes a truthful LLM index for the illustrative example set", async () => {
+    const content = await readFile(
+      new URL("../public/llms.txt", import.meta.url),
+      "utf8",
+    );
+    const examples = publicAgentData();
+    const profileLines = content
+      .split("\n")
+      .filter((line) => line.startsWith("- ") && line.includes("/agent/"));
+
+    expect(examples).toHaveLength(18);
+    expect(profileLines).toHaveLength(examples.length);
+    expect(content).toContain("deterministic illustrative examples");
+    expect(content).toContain("They are not live x402 listings");
+    expect(content).toContain("or evidence of settled transactions.");
+
+    for (const { agent } of examples) {
+      expect(content).toContain(
+        `${SITE_URL}/agent/${encodeURIComponent(agent.id)}`,
+      );
+    }
+  });
+
   it("suppresses unavailable Studio listings for every public example page", () => {
     const examples = publicAgentData();
     expect(examples).toHaveLength(18);
