@@ -21,9 +21,9 @@ export interface Agent {
   id: string;
   name: string;
   ownerWallet: string;
-  /** Public x402 listing URL on the builder (e.g. agents.suedeai.ai/a/{slug}). */
+  /** Public x402 listing URL on the builder, or empty for illustrative data. */
   x402Url: string;
-  /** Slug used for builder deep-links (x402 discovery doc, public page). */
+  /** Stable local slug for resolving the illustrative or operator-entered profile. */
   slug: string;
   priceUsdc: number;
   category: string;
