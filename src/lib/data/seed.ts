@@ -98,7 +98,9 @@ function buildAgent(spec: SeedSpec): Agent {
     name: spec.name,
     slug: spec.slug,
     ownerWallet: DEFAULT_OWNER,
-    x402Url: `https://agents.suedeai.ai/a/${spec.slug}`,
+    // These are deterministic illustrative profiles, not published Agent
+    // Studio records. Never manufacture a Studio URL from the demo slug.
+    x402Url: "",
     priceUsdc: spec.priceUsdc,
     category: spec.category,
     launchedAt,

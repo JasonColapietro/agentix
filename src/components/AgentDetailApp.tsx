@@ -112,7 +112,10 @@ export function AgentDetailApp({ id }: { id: string }) {
           <div className="mb-6 rounded-lg border px-4 py-3" style={{ borderColor: "var(--hairline-cyan)", background: "color-mix(in srgb, var(--primary) 5%, transparent)", fontSize: "var(--text-sm)" }}>
             <span style={{ fontWeight: 500 }}>Example agent.</span>{" "}
             <Link href="/" className="no-underline" style={{ color: "var(--primary)" }}>Add your own agent</Link>{" "}
-            <span style={{ color: "var(--text-muted)" }}>to log, grade, and set goals.</span>
+            <span style={{ color: "var(--text-muted)" }}>
+              to log, grade, and set goals. This illustrative profile has no
+              live x402 listing.
+            </span>
           </div>
         ) : null}
 
