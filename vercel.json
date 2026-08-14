@@ -1,3 +1,16 @@
 {
-  "ignoreCommand": "[ \"$VERCEL_ENV\" != \"production\" ] && exit 0 || exit 1"
+  "ignoreCommand": "[ \"$VERCEL_ENV\" != \"production\" ] && exit 0 || exit 1",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.agents.suedeai.ai"
+        }
+      ],
+      "destination": "https://agents.suedeai.ai/:path*",
+      "permanent": true
+    }
+  ]
 }
