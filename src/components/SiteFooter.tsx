@@ -1,4 +1,4 @@
-import { builderLinks } from "@/lib/site";
+import { builderLinks, estateLinks } from "@/lib/site";
 
 export function SiteFooter({ sourceLabel, asOf }: { sourceLabel: string; asOf?: string }) {
   return (
@@ -20,6 +20,12 @@ export function SiteFooter({ sourceLabel, asOf }: { sourceLabel: string; asOf?: 
             </a>
             <a href={builderLinks.grade} target="_blank" rel="noreferrer" className="mono no-underline" style={{ fontSize: "var(--text-xs)", color: "var(--text-muted)" }}>
               Grade ↗
+            </a>
+            <a href={estateLinks.contact} className="mono no-underline" style={{ fontSize: "var(--text-xs)", color: "var(--text-muted)" }}>
+              Contact
+            </a>
+            <a href={estateLinks.privacy} className="mono no-underline" style={{ fontSize: "var(--text-xs)", color: "var(--text-muted)" }}>
+              Privacy
             </a>
           </div>
           <span className="mono" style={{ fontSize: "var(--text-label)", color: "var(--text-muted)" }} data-numeric>

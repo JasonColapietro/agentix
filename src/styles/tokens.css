@@ -36,6 +36,10 @@
   /* Category / signal colors (node tags) */
   --registry-cyan: #06b6d4;   /* Suede Tools */
   --verified-emerald: #10b981; /* Rails / paid / done */
+  /* Text-safe pairs: the bright tokens above are for dots, fills, and borders.
+     Glyphs on a white surface use these, which clear WCAG 4.5:1. */
+  --registry-cyan-text: #0e7490;
+  --verified-emerald-text: #047857;
   --violet: #8b5cf6;          /* Triggers */
   --amber: #f59e0b;           /* Logic */
   --proof-sky: #0ea5e9;
@@ -72,6 +76,7 @@
 
   /* ── Agentix additions: ledger + chart semantics ───────────────────── */
   --positive: var(--verified-emerald); /* revenue up, settled, healthy */
+  --positive-text: var(--verified-emerald-text); /* the same signal, as a glyph */
   --negative: var(--rights-red);       /* revenue down, errors, down */
   --neutral: var(--text-muted);
   --chart-grid: #eef0f6;               /* gridlines on recessed panes */

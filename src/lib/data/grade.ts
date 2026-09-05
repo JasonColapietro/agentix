@@ -34,9 +34,9 @@ export function gradeColor(letter: GradeLetter): string {
     case "S":
       return "var(--violet)";
     case "A":
-      return "var(--verified-emerald)";
+      return "var(--verified-emerald-text)";
     case "B":
-      return "var(--registry-cyan)";
+      return "var(--registry-cyan-text)";
     case "C":
       return "var(--amber)";
     case "D":
