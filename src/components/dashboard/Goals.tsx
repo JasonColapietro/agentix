@@ -30,7 +30,7 @@ export function Goals({ summary, targets, onChange }: { summary: PortfolioSummar
             <span className="mono" data-numeric style={{ color: "var(--text-muted)", fontSize: "var(--text-sm)" }}>of {usd(target)}</span>
           </div>
           <ProgressBar value={current} max={target} height={10} />
-          <p style={{ color: reached ? "var(--verified-emerald)" : "var(--text-muted)", fontSize: "var(--text-xs)" }} data-numeric>
+          <p style={{ color: reached ? "var(--verified-emerald-text)" : "var(--text-muted)", fontSize: "var(--text-xs)" }} data-numeric>
             {reached ? "Goal reached — nice." : `${pct.toFixed(0)}% there · ${usd(target - current)} to go`}
           </p>
         </>

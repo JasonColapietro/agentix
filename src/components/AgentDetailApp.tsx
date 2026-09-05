@@ -145,7 +145,7 @@ export function AgentDetailApp({ id }: { id: string }) {
                   <span className="mono" data-numeric style={{ color: "var(--text-muted)", fontSize: "var(--text-sm)" }}>of {usd(target)}</span>
                 </div>
                 <ProgressBar value={agent.stats.revenueUsdc} max={target} color={color} height={10} />
-                <p style={{ color: agent.stats.revenueUsdc >= target ? "var(--verified-emerald)" : "var(--text-muted)", fontSize: "var(--text-xs)" }} data-numeric>
+                <p style={{ color: agent.stats.revenueUsdc >= target ? "var(--verified-emerald-text)" : "var(--text-muted)", fontSize: "var(--text-xs)" }} data-numeric>
                   {agent.stats.revenueUsdc >= target ? "Reached." : `${Math.round((agent.stats.revenueUsdc / target) * 100)}% · ${usd(target - agent.stats.revenueUsdc)} to go`}
                 </p>
               </>
@@ -227,7 +227,7 @@ function RunsTable({ runs, now }: { runs: { callId: string; ts: string; grossUsd
               <td className="px-5 py-3"><span className="mono" data-numeric style={{ fontSize: "var(--text-xs)", color: "var(--text-muted)" }}>{run.callId.slice(0, 12)}…</span></td>
               <td className="px-3 py-3 text-right tabular" data-numeric style={{ fontWeight: 500 }}>{run.settled ? usdPrecise(run.amountUsdc) : "—"}</td>
               <td className="px-3 py-3 text-right tabular" data-numeric style={{ color: "var(--text-muted)", fontSize: "var(--text-sm)" }}>{timeAgo(run.ts, now)}</td>
-              <td className="px-5 py-3 text-right">{run.settled ? <span className="mono" style={{ fontSize: "var(--text-label)", color: "var(--verified-emerald)" }}>✓ settled</span> : <span className="mono" style={{ fontSize: "var(--text-label)", color: "var(--text-muted)" }}>unsettled</span>}</td>
+              <td className="px-5 py-3 text-right">{run.settled ? <span className="mono" style={{ fontSize: "var(--text-label)", color: "var(--verified-emerald-text)" }}>✓ settled</span> : <span className="mono" style={{ fontSize: "var(--text-label)", color: "var(--text-muted)" }}>unsettled</span>}</td>
             </tr>
           ))}
         </tbody>

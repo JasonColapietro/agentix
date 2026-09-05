@@ -24,3 +24,12 @@ export const builderLinks = {
   /** x402 discovery doc for an agent. */
   x402: (slug: string) => `${BUILDER_URL}/api/agents/${slug}/.well-known/x402`,
 } as const;
+
+/**
+ * Estate-wide policy and contact surfaces. Agentix has no policy of its own,
+ * so the footer points at the Suede Labs AI pages that cover its apps and sites.
+ */
+export const estateLinks = {
+  contact: "https://suedeai.ai/contact",
+  privacy: "https://suedeai.ai/privacy",
+} as const;

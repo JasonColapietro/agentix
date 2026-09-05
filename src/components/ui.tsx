@@ -52,7 +52,7 @@ export function DeltaPill({ fraction, className = "" }: { fraction: number; clas
   const isNew = !Number.isFinite(fraction);
   const up = fraction > 0;
   const flat = fraction === 0;
-  const color = isNew ? "var(--registry-cyan)" : up ? "var(--positive)" : flat ? "var(--text-muted)" : "var(--negative)";
+  const color = isNew ? "var(--registry-cyan-text)" : up ? "var(--positive-text)" : flat ? "var(--text-muted)" : "var(--negative)";
   const glyph = isNew ? "✦" : up ? "▲" : flat ? "→" : "▼";
   const text = isNew ? "new" : signedPct(fraction);
   return (

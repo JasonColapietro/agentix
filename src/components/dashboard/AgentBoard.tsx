@@ -118,7 +118,7 @@ export function AgentBoard({
             );
           })}
         </div>
-        <select value={sort} onChange={(e) => setSort(e.target.value as SortKey)} className="mono" style={{ height: 36, padding: "0 10px", borderRadius: 999, border: "1px solid var(--hairline)", background: "var(--ink-control)", fontSize: "var(--text-xs)", color: "var(--text-muted)", cursor: "pointer", marginLeft: "auto" }}>
+        <select aria-label="Sort leaderboard by" value={sort} onChange={(e) => setSort(e.target.value as SortKey)} className="mono" style={{ height: 36, padding: "0 10px", borderRadius: 999, border: "1px solid var(--hairline)", background: "var(--ink-control)", fontSize: "var(--text-xs)", color: "var(--text-muted)", cursor: "pointer", marginLeft: "auto" }}>
           {SORTS.map((s) => <option key={s.key} value={s.key}>Sort: {s.label}</option>)}
         </select>
       </div>
