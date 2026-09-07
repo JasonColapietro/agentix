@@ -225,7 +225,7 @@ function RunsTable({ runs, now }: { runs: { callId: string; ts: string; grossUsd
           {runs.map((run) => (
             <tr key={run.callId} style={{ borderBottom: "1px solid var(--hairline)" }}>
               <td className="px-5 py-3"><span className="mono" data-numeric style={{ fontSize: "var(--text-xs)", color: "var(--text-muted)" }}>{run.callId.slice(0, 12)}…</span></td>
-              <td className="px-3 py-3 text-right tabular" data-numeric style={{ fontWeight: 500 }}>{run.settled ? usdPrecise(run.amountUsdc) : "—"}</td>
+              <td className="px-3 py-3 text-right tabular" data-numeric style={{ fontWeight: 500 }}>{run.settled ? usdPrecise(run.amountUsdc) : "-"}</td>
               <td className="px-3 py-3 text-right tabular" data-numeric style={{ color: "var(--text-muted)", fontSize: "var(--text-sm)" }}>{timeAgo(run.ts, now)}</td>
               <td className="px-5 py-3 text-right">{run.settled ? <span className="mono" style={{ fontSize: "var(--text-label)", color: "var(--verified-emerald-text)" }}>✓ settled</span> : <span className="mono" style={{ fontSize: "var(--text-label)", color: "var(--text-muted)" }}>unsettled</span>}</td>
             </tr>

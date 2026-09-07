@@ -80,7 +80,7 @@ export function PortfolioApp() {
           <div className="mb-8 flex flex-col gap-2 rounded-lg border px-4 py-3 sm:flex-row sm:items-center sm:justify-between" style={{ borderColor: "var(--hairline-cyan)", background: "color-mix(in srgb, var(--primary) 5%, transparent)" }}>
             <p style={{ fontSize: "var(--text-sm)" }}>
               <span style={{ fontWeight: 500 }}>Example portfolio.</span>{" "}
-              <span style={{ color: "var(--text-muted)" }}>Add your own agents below — everything you enter is saved in this browser.</span>
+              <span style={{ color: "var(--text-muted)" }}>Add your own agents below: everything you enter is saved in this browser.</span>
             </p>
           </div>
         ) : null}

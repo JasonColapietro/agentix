@@ -20,7 +20,7 @@ describe("format helpers", () => {
     expect(signedPct(0.123)).toBe("+12.3%");
     expect(signedPct(-0.04)).toBe("−4.0%");
     expect(signedPct(0)).toBe("0.0%");
-    expect(signedPct(Infinity)).toBe("—");
+    expect(signedPct(Infinity)).toBe("-");
   });
 
   it("truncates EVM addresses", () => {

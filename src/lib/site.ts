@@ -32,4 +32,6 @@ export const builderLinks = {
 export const estateLinks = {
   contact: "https://suedeai.ai/contact",
   privacy: "https://suedeai.ai/privacy",
+  hub: "https://hub.suedeai.ai",
+  seo: "https://seo.suedeai.ai",
 } as const;

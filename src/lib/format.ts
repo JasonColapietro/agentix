@@ -53,7 +53,7 @@ export function compactNum(n: number): string {
 
 /** +12.3% / −4.0% — signed percentage with a true minus glyph. */
 export function signedPct(fraction: number): string {
-  if (!Number.isFinite(fraction)) return "—";
+  if (!Number.isFinite(fraction)) return "-";
   const pct = fraction * 100;
   const sign = pct > 0 ? "+" : pct < 0 ? "−" : "";
   return `${sign}${Math.abs(pct).toFixed(1)}%`;

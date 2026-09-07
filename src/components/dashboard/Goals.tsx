@@ -31,7 +31,7 @@ export function Goals({ summary, targets, onChange }: { summary: PortfolioSummar
           </div>
           <ProgressBar value={current} max={target} height={10} />
           <p style={{ color: reached ? "var(--verified-emerald-text)" : "var(--text-muted)", fontSize: "var(--text-xs)" }} data-numeric>
-            {reached ? "Goal reached — nice." : `${pct.toFixed(0)}% there · ${usd(target - current)} to go`}
+            {reached ? "Goal reached. Nice." : `${pct.toFixed(0)}% there · ${usd(target - current)} to go`}
           </p>
         </>
       ) : (

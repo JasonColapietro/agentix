@@ -27,6 +27,12 @@ export function SiteFooter({ sourceLabel, asOf }: { sourceLabel: string; asOf?: 
             <a href={estateLinks.privacy} className="mono no-underline" style={{ fontSize: "var(--text-xs)", color: "var(--text-muted)" }}>
               Privacy
             </a>
+            <a href={estateLinks.hub} className="mono no-underline" style={{ fontSize: "var(--text-xs)", color: "var(--text-muted)" }}>
+              Suede estate directory
+            </a>
+            <a href={estateLinks.seo} className="mono no-underline" style={{ fontSize: "var(--text-xs)", color: "var(--text-muted)" }}>
+              Suede SEO
+            </a>
           </div>
           <span className="mono" style={{ fontSize: "var(--text-label)", color: "var(--text-muted)" }} data-numeric>
             Source: {sourceLabel}

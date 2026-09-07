@@ -172,7 +172,7 @@ export function AgentBoard({
                             <span className="tabular" data-numeric style={{ fontSize: "var(--text-label)", color: "var(--text-muted)" }}>{Math.min(100, Math.round((a.stats.revenueUsdc / target) * 100))}% of {usd(target)}</span>
                           </div>
                         ) : (
-                          <span style={{ color: "var(--hairline)", fontSize: "var(--text-xs)" }}>—</span>
+                          <span style={{ color: "var(--hairline)", fontSize: "var(--text-xs)" }}>-</span>
                         )}
                       </td>
                       <td className="hidden px-3 py-3 md:table-cell"><Sparkline values={a.stats.spark} color={categoryColor(a.category)} width={80} height={24} /></td>
