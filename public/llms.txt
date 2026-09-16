@@ -3,7 +3,7 @@
 > Agentix is a browser-local portfolio tracker for monitoring agents, manually recording daily calls and earnings, and reviewing performance grades.
 
 Canonical site: https://agentix.suedeai.ai
-Suede Agent Studio: https://agents.suedeai.ai
+Suede AI Agent Studio: https://agents.suedeai.ai
 
 ## Important data note
 
