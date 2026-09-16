@@ -2,7 +2,7 @@
 
 **The portfolio tracker for the x402 agents you've launched.** → agentix.suedeai.ai
 
-Suede Agent Studio (agents.suedeai.ai) is where you *build and launch* pay-per-call agents.
+Suede AI Agent Studio (agents.suedeai.ai) is where you *build and launch* pay-per-call agents.
 **Agentix is where you watch them earn** — total USDC, calls, per-agent performance, status, and
 trend on one screen.
 

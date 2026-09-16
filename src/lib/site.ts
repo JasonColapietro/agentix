@@ -2,7 +2,7 @@
  * Canonical site origin for Agentix (the tracker) and a pointer to the builder.
  *
  * agentix.suedeai.ai is THIS app — the operator's portfolio tracker.
- * agents.suedeai.ai is the SEPARATE builder (Suede Agent Studio) where agents
+ * agents.suedeai.ai is the SEPARATE builder (Suede AI Agent Studio) where agents
  * are made and launched. Agentix links out to the builder's public surfaces
  * (`/rankings`, `/grade`, each agent's x402 listing) but never re-implements them.
  */
