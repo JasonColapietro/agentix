@@ -6,6 +6,7 @@ import {
   publicAgent,
   publicAgentData,
 } from "@/lib/data/seed-provider";
+import { agentKeywords } from "@/lib/seo-keywords";
 import { OG_IMAGE_URL, SITE_URL } from "@/lib/site";
 
 interface AgentDetailPageProps {
@@ -39,6 +40,7 @@ export async function generateMetadata({ params }: AgentDetailPageProps): Promis
   return {
     title: agent.name,
     description,
+    keywords: agentKeywords(agent),
     alternates: { canonical },
     robots: { index: true, follow: true },
     openGraph: {

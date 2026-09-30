@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { OG_IMAGE_URL, SITE_URL } from "@/lib/site";
+import { HOME_KEYWORDS } from "@/lib/seo-keywords";
 import "./globals.css";
 
 const geist = Geist({ variable: "--font-geist", subsets: ["latin"] });
@@ -30,6 +31,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: DEFAULT_DESCRIPTION,
+  keywords: [...HOME_KEYWORDS],
   applicationName: SITE_NAME,
   authors: [{ name: "Jason Colapietro", url: "https://github.com/JasonColapietro" }],
   creator: "Jason Colapietro",

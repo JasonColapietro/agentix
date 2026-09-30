@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { PortfolioApp } from "@/components/PortfolioApp";
 import { SITE_URL } from "@/lib/site";
+import { HOME_KEYWORDS } from "@/lib/seo-keywords";
 
 export const metadata: Metadata = {
   alternates: { canonical: SITE_URL },
+  keywords: [...HOME_KEYWORDS],
 };
 
 // Client-driven: renders the example portfolio server-side, then hydrates the
