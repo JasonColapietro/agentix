@@ -27,7 +27,7 @@ export const builderLinks = {
 
 /**
  * Estate-wide policy and contact surfaces. Agentix has no policy of its own,
- * so the footer points at the Suede Labs AI pages that cover its apps and sites.
+ * so the footer points at the Suede AI pages that cover its apps and sites.
  */
 export const estateLinks = {
   contact: "https://suedeai.ai/contact",
