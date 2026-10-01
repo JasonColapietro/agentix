@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   applicationName: SITE_NAME,
   authors: [{ name: "Jason Colapietro", url: "https://github.com/JasonColapietro" }],
   creator: "Jason Colapietro",
-  publisher: "Suede Labs AI",
+  publisher: "Suede AI",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
 /**
  * Minimal entity graph. The Organization + Person @ids MIRROR the canonical
  * nodes published across the Suede ecosystem (suedeai.ai `/#organization`,
- * `/founder#person`) so Agentix folds into the same Suede Labs AI / Jason
+ * `/founder#person`) so Agentix folds into the same Suede AI / Jason
  * Colapietro entities rather than minting new ones. Keep in lockstep with the
  * builder's layout.tsx graph.
  */
@@ -82,7 +82,7 @@ const jsonLd = {
     {
       "@type": "Organization",
       "@id": SUEDE_ORG_ID,
-      name: "Suede Labs AI",
+      name: "Suede AI",
       url: "https://suedeai.ai",
       founder: { "@id": JASON_PERSON_ID },
     },
