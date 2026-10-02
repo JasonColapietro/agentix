@@ -23,5 +23,11 @@
       "destination": "https://agents.suedeai.ai/:path*",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/ai-instructions",
+      "destination": "/ai-instructions.html"
+    }
   ]
 }
