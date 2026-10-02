@@ -35,3 +35,7 @@ The 18 public agent profiles and their earnings figures are deterministic illust
 - Sitemap: https://agentix.suedeai.ai/sitemap.xml
 - Robots: https://agentix.suedeai.ai/robots.txt
 - Agent Studio x402 discovery: https://agents.suedeai.ai/.well-known/x402
+
+## Source and citation guide
+
+- [AI Instructions](https://agentix.suedeai.ai/ai-instructions): Site identity, authoritative sources and citation guidance.
