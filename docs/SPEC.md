@@ -1,4 +1,4 @@
-# Agentix — Agent Portfolio Tracker (build spec / handoff)
+# Agentix — Agent Directory And Portfolio Tracker (build spec / handoff)
 
 > Greenfield. Date: 2026-06-30. Owner: Jason (JasonColapietro). Status: spec → ready to build.
 > **This repo is the TRACKER, not the builder.** The builder ("Suede Agent Studio") is a
@@ -6,9 +6,10 @@
 
 ## One-line
 
-**agentix.suedeai.ai** — the portfolio dashboard for the x402 agents you've launched. The
-builder is where you *make and launch* pay-per-call agents; **Agentix is where you watch them
-earn.** Total USDC earned, calls, per-agent performance, status, and trend — one screen.
+**agentix.suedeai.ai** — the directory and portfolio dashboard for the x402 agents you've
+launched. The builder is where you *make and launch* pay-per-call agents; **Agentix is where
+you catalog, compare, and watch them earn.** Buyer fit, use case, total USDC earned, calls,
+per-agent performance, status, and trend — one screen.
 
 ## Where it fits in the Suede ecosystem
 
@@ -17,8 +18,10 @@ earn.** Total USDC earned, calls, per-agent performance, status, and trend — o
   It already exposes `/api/catalog`, `/api/me`, a directory, `/grade`, and
   `/rankings/best-ai-agent-builders`. **Those rankings/grade surfaces STAY in the builder** —
   Agentix is the *owner's portfolio view*, not the public directory.
-- **Agentix** (this repo, agentix.suedeai.ai): the operator-facing tracker. Reads the agents a
-  user owns and surfaces earnings + ops health over time.
+- **Agentix** (this repo, agentix.suedeai.ai): the operator-facing directory and tracker. Reads
+  the agents a user owns, adds buyer/use-case positioning, and surfaces earnings + ops health
+  over time. It can rank the operator's tracked agents, but it must not become the Studio
+  builder or duplicate Studio's public launch flows.
 
 ## Decided (locked unless Jason overrides)
 
@@ -48,7 +51,7 @@ earn.** Total USDC earned, calls, per-agent performance, status, and trend — o
 ## Data model (starting point)
 
 ```
-Agent      { id, name, ownerWallet, x402Url, priceUsdc, category, launchedAt, status }
+Agent      { id, name, ownerWallet, x402Url, priceUsdc, category, buyer, useCase, directoryNote, launchedAt, status }
 Earning    { agentId, ts, callId, amountUsdc, settled }   // one row per paid call
 DailyRoll  { agentId, day, calls, revenueUsdc, errors }    // pre-aggregated for charts
 ```
@@ -156,3 +159,25 @@ Architecture:
   + example fallback. Pages (`/`, `/agent/[id]`) render client apps (`PortfolioApp`,
   `AgentDetailApp`) that read it; SSR shows the deterministic example so the public sees content.
 - Input UI: `components/input/` (`AgentForm`, `LogEarningsForm`, `Modal`).
+
+## Direction update — directory + tracker value (2026-07-09)
+
+Jason redirected: Agentix needs real value as both a directory and a tracker, while staying
+separate from Suede Agent Studio. Interpreted boundary:
+
+- **Agentix directory:** an owner/operator directory of tracked agents. It can store buyer,
+  use-case, and directory-note metadata; calculate an Agentix directory score from tracker facts;
+  filter for listed, earning, and attention-needed agents; and link to public x402 listings.
+- **Suede Agent Studio:** still the build/launch surface at `agents.suedeai.ai`. Agentix links
+  out to Studio and its public listing pages but does not re-implement the builder, canvas,
+  pricing setup, launch flow, public rankings, or agent grading intake.
+
+Implemented slice:
+
+- `src/lib/directory.ts` computes directory score, reliability, run-rate, labels, and attention
+  signals from Agentix tracker read-models.
+- Seed and manual agents include `buyer`, `useCase`, and `directoryNote`.
+- Dashboard now shows directory intelligence cards and an agent directory table sorted by
+  directory score.
+- Agent detail pages now include a directory profile with buyer, use case, score, and outbound
+  listing/Studio links.

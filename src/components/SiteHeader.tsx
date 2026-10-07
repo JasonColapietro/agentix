@@ -18,7 +18,7 @@ export function SiteHeader({ ownerWallet }: { ownerWallet?: string }) {
             Agentix
           </span>
           <span className="eyebrow hidden sm:inline" style={{ transform: "translateY(-1px)" }}>
-            Tracker
+            Directory + tracker
           </span>
         </Link>
 

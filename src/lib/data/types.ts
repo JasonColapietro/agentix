@@ -27,6 +27,12 @@ export interface Agent {
   slug: string;
   priceUsdc: number;
   category: string;
+  /** Buyer segment this agent is useful for in the Agentix directory. */
+  buyer?: string;
+  /** Plain-English job-to-be-done shown in the Agentix directory. */
+  useCase?: string;
+  /** Short positioning note owned by Agentix, not the builder. */
+  directoryNote?: string;
   /** ISO timestamp. */
   launchedAt: string;
   status: AgentStatus;

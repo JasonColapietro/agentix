@@ -1,10 +1,10 @@
 # Agentix
 
-**The portfolio tracker for the x402 agents you've launched.** → agentix.suedeai.ai
+**The directory and portfolio tracker for the x402 agents you've launched.** → agentix.suedeai.ai
 
 Suede Agent Studio (agents.suedeai.ai) is where you *build and launch* pay-per-call agents.
-**Agentix is where you watch them earn** — total USDC, calls, per-agent performance, status, and
-trend on one screen.
+**Agentix is where you catalog, compare, and watch them earn** — buyer fit, use case,
+directory score, total USDC, calls, per-agent performance, status, and trend on one screen.
 
 > Greenfield, in development. Build spec + handoff: [`docs/SPEC.md`](docs/SPEC.md).
 > This is the **tracker**, a separate product from the builder repo `suede-agent-studio`.
@@ -27,8 +27,10 @@ large non-music **example portfolio** stands in as a populated demo.
 - **Inline everything (no modals)** — add / edit / delete agents and log a day directly on the page.
 - **Richer analytics** — Performance panel with Revenue / Cumulative / Calls × 7D / 30D / All
   toggles, a revenue **allocation** breakdown, and per-agent grade breakdowns.
-- **Search, filter, sort** the leaderboard; **goals** — set a revenue target per agent and for the
-  whole portfolio, with progress bars.
+- **Directory intelligence** — buyer/use-case metadata, Agentix directory scores, listing filters,
+  attention flags, and outbound x402 listing links without duplicating Suede Agent Studio.
+- **Search, filter, sort** the agent directory; **goals** — set a revenue target per agent and for
+  the whole portfolio, with progress bars.
 - One read-model seam ([`src/lib/data/aggregate.ts`](src/lib/data/aggregate.ts)) feeds from either
   the example seed or the [`local-store`](src/lib/data/local-store.ts). A hosted DB (Supabase /
   Vercel Postgres) drops in behind the same surface for cross-device + multi-user without UI changes.

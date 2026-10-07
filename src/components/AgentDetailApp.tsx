@@ -14,6 +14,7 @@ import { InlineAgentForm, InlineLogForm, GoalEditor } from "@/components/input/I
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ghostBtn, primaryBtn } from "@/components/input/fields";
+import { buyerLabel, directorySignal, useCaseLabel } from "@/lib/directory";
 
 const GRADE_WORD: Record<GradeLetter, string> = { S: "Exceptional", A: "Strong", B: "Solid", C: "Fair", D: "Weak", F: "Failing" };
 
@@ -62,6 +63,7 @@ export function AgentDetailApp({ id }: { id: string }) {
   const color = categoryColor(agent.category);
   const errorRate = agent.stats.calls > 0 ? agent.stats.errors / agent.stats.calls : 0;
   const loggedDays = agent.daily.filter((r) => r.calls > 0 || r.revenueUsdc > 0 || r.errors > 0).slice(-20).reverse();
+  const dir = directorySignal(agent);
 
   function onDelete() {
     if (window.confirm(`Delete ${agent.name}? This removes it and its logged days.`)) {
@@ -118,6 +120,26 @@ export function AgentDetailApp({ id }: { id: string }) {
 
         {editing && editable ? <div className="mb-6"><InlineAgentForm initial={agent} onClose={() => setEditing(false)} onSaved={refresh} /></div> : null}
         {logging && editable ? <div className="mb-6"><InlineLogForm agentId={agent.id} agentName={agent.name} onClose={() => setLogging(false)} onSaved={refresh} /></div> : null}
+
+        <section className="card mb-6 p-5">
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
+            <div>
+              <p className="eyebrow mb-2">Directory profile</p>
+              <h2 className="display" style={{ fontSize: "var(--text-h3)" }}>{useCaseLabel(agent)}</h2>
+              <p className="mt-3" style={{ color: "var(--text-muted)", fontSize: "var(--text-sm)" }}>{agent.directoryNote || dir.reason}</p>
+            </div>
+            <DirectoryMetric label="Buyer" value={buyerLabel(agent)} />
+            <div className="flex flex-col gap-3">
+              <DirectoryMetric label="Agentix score" value={`${dir.score} · ${dir.label}`} numeric />
+              <div className="flex flex-wrap gap-2">
+                {agent.x402Url ? (
+                  <a href={agent.x402Url} target="_blank" rel="noreferrer" className="mono inline-flex rounded-md px-3 py-2 no-underline" style={{ fontSize: "var(--text-xs)", color: "var(--on-primary)", background: "var(--primary)" }}>View listing ↗</a>
+                ) : null}
+                <a href="https://agents.suedeai.ai" target="_blank" rel="noreferrer" className="mono inline-flex rounded-md px-3 py-2 no-underline" style={{ fontSize: "var(--text-xs)", color: "var(--text-muted)", border: "1px solid var(--hairline)" }}>Open Studio ↗</a>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* grade + goal */}
         <div className="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -195,6 +217,15 @@ export function AgentDetailApp({ id }: { id: string }) {
       </main>
       <SiteFooter sourceLabel={examples ? "seed data (demo)" : "your entries · saved in this browser"} asOf={formatDate(now)} />
     </>
+  );
+}
+
+function DirectoryMetric({ label, value, numeric }: { label: string; value: string; numeric?: boolean }) {
+  return (
+    <div className="flex flex-col gap-2">
+      <p className="eyebrow">{label}</p>
+      <p className={numeric ? "tabular" : undefined} data-numeric={numeric ? true : undefined} style={{ fontSize: "var(--text-sm)", color: "var(--text-primary)" }}>{value}</p>
+    </div>
   );
 }
 

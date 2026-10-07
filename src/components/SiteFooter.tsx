@@ -9,7 +9,7 @@ export function SiteFooter({ sourceLabel, asOf }: { sourceLabel: string; asOf?: 
             Agentix
           </span>
           <span style={{ color: "var(--text-muted)", fontSize: "var(--text-xs)" }}>
-            The portfolio tracker for the x402 agents you've launched.
+            The directory and earnings tracker for launched x402 agents.
           </span>
         </div>
 

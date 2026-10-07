@@ -12,9 +12,9 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const SITE_NAME = "Agentix";
-const DEFAULT_TITLE = "Agentix — watch your agents earn";
+const DEFAULT_TITLE = "Agentix — agent directory and earnings tracker";
 const DEFAULT_DESCRIPTION =
-  "The portfolio tracker for the x402 agents you've launched. Total USDC earned on Base, calls, per-agent performance, status, and trend — one screen.";
+  "The directory and earnings tracker for launched x402 agents. Track buyer fit, use cases, USDC earned on Base, calls, health, and trend — one screen.";
 // Shared Suede OG image until Agentix has a dedicated one.
 const OG_IMAGE = "https://app.suedeai.ai/opengraph.png";
 
@@ -28,6 +28,7 @@ export const metadata: Metadata = {
   applicationName: SITE_NAME,
   keywords: [
     "x402 agent earnings",
+    "AI agent directory",
     "agent portfolio tracker",
     "USDC on Base",
     "AI agents that earn",
