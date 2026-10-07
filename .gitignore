@@ -31,3 +31,4 @@ next-env.d.ts
 # claude code local tooling + worktrees (this dir holds .claude/worktrees/*)
 .claude/*
 !.claude/settings.json
+.env*
