@@ -21,7 +21,7 @@ function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
 }
 
-export function AgentDetailApp({ id }: { id: string }) {
+export function AgentDetailApp({ id, hideFooter = false }: { id: string; hideFooter?: boolean }) {
   const router = useRouter();
   const [view, setView] = useState<LocalAgentView | null>(() => exampleAgent(id));
   const [mounted, setMounted] = useState(false);
@@ -110,7 +110,7 @@ export function AgentDetailApp({ id }: { id: string }) {
 
         {!editable ? (
           <div className="mb-6 rounded-lg border px-4 py-3" style={{ borderColor: "var(--hairline-cyan)", background: "color-mix(in srgb, var(--primary) 5%, transparent)", fontSize: "var(--text-sm)" }}>
-            <span style={{ fontWeight: 500 }}>Example agent.</span>{" "}
+            <span style={{ fontWeight: 500 }}>Example agent profile.</span>{" "}
             <Link href="/" className="no-underline" style={{ color: "var(--primary)" }}>Add your own agent</Link>{" "}
             <span style={{ color: "var(--text-muted)" }}>
               to log, grade, and set goals. This illustrative profile has no
@@ -196,7 +196,7 @@ export function AgentDetailApp({ id }: { id: string }) {
           </section>
         </div>
       </main>
-      <SiteFooter sourceLabel={examples ? "seed data (demo)" : "your entries · saved in this browser"} asOf={formatDate(now)} />
+      {hideFooter ? null : <SiteFooter sourceLabel={examples ? "seed data (demo)" : "your entries · saved in this browser"} asOf={formatDate(now)} />}
     </>
   );
 }

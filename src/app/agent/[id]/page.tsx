@@ -1,16 +1,24 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { AgentProfileContent } from "@/components/AgentProfileContent";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SEED_NOW } from "@/lib/data/seed";
 import { AgentDetailApp } from "@/components/AgentDetailApp";
 import {
   isBrowserLocalAgentId,
   publicAgent,
   publicAgentData,
 } from "@/lib/data/seed-provider";
+import { agentDescription, agentJsonLd, agentPath, agentTitle, relatedAgents } from "@/lib/agent-seo";
 import { agentKeywords } from "@/lib/seo-keywords";
-import { OG_IMAGE_URL, SITE_URL } from "@/lib/site";
+import { OG_IMAGE_URL } from "@/lib/site";
 
 interface AgentDetailPageProps {
   params: Promise<{ id: string }>;
+}
+
+function formatSeedDate(): string {
+  return SEED_NOW.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
 }
 
 export function generateStaticParams(): { id: string }[] {
@@ -32,13 +40,12 @@ export async function generateMetadata({ params }: AgentDetailPageProps): Promis
   }
 
   const { agent } = match;
-  const canonical = `${SITE_URL}/agent/${encodeURIComponent(agent.id)}`;
-  const description =
-    `Explore the ${agent.name} example agent profile in Agentix, including ` +
-    "x402 price, status, calls, grade, and earnings trend.";
+  const canonical = agentPath(agent.id);
+  const description = agentDescription(agent);
+  const title = agentTitle(agent);
 
   return {
-    title: agent.name,
+    title,
     description,
     keywords: agentKeywords(agent),
     alternates: { canonical },
@@ -48,7 +55,7 @@ export async function generateMetadata({ params }: AgentDetailPageProps): Promis
       locale: "en_US",
       url: canonical,
       siteName: "Agentix",
-      title: `${agent.name} | Agentix`,
+      title: `${title} | Agentix`,
       description,
       images: [{ url: OG_IMAGE_URL, width: 1200, height: 630, alt: "Agentix" }],
     },
@@ -56,7 +63,7 @@ export async function generateMetadata({ params }: AgentDetailPageProps): Promis
       card: "summary_large_image",
       site: "@AISUEDE",
       creator: "@johnnysuede",
-      title: `${agent.name} | Agentix`,
+      title: `${title} | Agentix`,
       description,
       images: [OG_IMAGE_URL],
     },
@@ -67,7 +74,19 @@ export default async function AgentDetailPage({ params }: AgentDetailPageProps) 
   const { id } = await params;
   const match = publicAgent(id);
 
-  if (match) return <AgentDetailApp id={match.agent.id} />;
+  if (match) {
+    return (
+      <>
+        <AgentDetailApp id={match.agent.id} hideFooter />
+        <AgentProfileContent data={match} related={relatedAgents(match.agent, publicAgentData())} />
+        <SiteFooter sourceLabel="seed data (demo)" asOf={formatSeedDate()} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(agentJsonLd(match.agent)) }}
+        />
+      </>
+    );
+  }
 
   if (isBrowserLocalAgentId(id)) return <AgentDetailApp id={id} />;
 

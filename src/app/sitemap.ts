@@ -9,7 +9,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
-    ...publicAgentData().map(({ agent }) => ({
+    ...publicAgentData()
+      .map(({ agent }) => ({
       url: `${SITE_URL}/agent/${encodeURIComponent(agent.id)}`,
       changeFrequency: "weekly" as const,
       priority: 0.6,

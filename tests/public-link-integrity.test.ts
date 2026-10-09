@@ -36,17 +36,14 @@ describe("public example link integrity", () => {
     }
   });
 
-  it("covers every current sitemap agent page without manufacturing an external CTA", () => {
+  it("lists illustrative agent pages in the sitemap without manufacturing an external CTA", () => {
     const examples = publicAgentData();
     const agentUrls = sitemap()
       .map((entry) => entry.url)
       .filter((url) => url.startsWith(`${SITE_URL}/agent/`));
 
     expect(agentUrls).toEqual(
-      examples.map(
-        ({ agent }) =>
-          `${SITE_URL}/agent/${encodeURIComponent(agent.id)}`,
-      ),
+      examples.map(({ agent }) => `${SITE_URL}/agent/${encodeURIComponent(agent.id)}`),
     );
     expect(examples.every(({ agent }) => agent.x402Url === "")).toBe(true);
   });
