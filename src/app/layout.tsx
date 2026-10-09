@@ -13,7 +13,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const SITE_NAME = "Agentix";
-const DEFAULT_TITLE = "Agentix: watch your agents earn";
+const DEFAULT_TITLE = "Agentix: x402 AI Agent Earnings Tracker for USDC on Base";
 const DEFAULT_DESCRIPTION =
   "The portfolio tracker for the x402 agents you've launched. Total USDC earned on Base, calls, per-agent performance, status, and trend. One screen.";
 export const metadata: Metadata = {

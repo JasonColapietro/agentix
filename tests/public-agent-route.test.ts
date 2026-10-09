@@ -1,8 +1,14 @@
 import { readFileSync } from "node:fs";
 import React from "react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import sitemap from "@/app/sitemap";
 import { SITE_URL } from "@/lib/site";
+
+// next/font only works inside the Next compiler; stub it so layout.tsx imports.
+vi.mock("next/font/google", () => {
+  const font = () => ({ variable: "", className: "", style: {} });
+  return { Geist: font, Geist_Mono: font, Instrument_Serif: font };
+});
 
 const knownId = "agt_market_data_feed";
 const browserLocalId = "agt_m7x9q2ab12cd34";
@@ -21,7 +27,7 @@ describe("public agent routes", () => {
     ).rejects.toMatchObject({ digest: "NEXT_HTTP_ERROR_FALLBACK;404" });
   });
 
-  it("publishes self-canonical, indexable metadata for a known agent", async () => {
+  it("publishes self-canonical, indexable metadata for an illustrative agent", async () => {
     const page = await import("@/app/agent/[id]/page");
 
     expect(page.generateMetadata).toBeTypeOf("function");
@@ -31,7 +37,7 @@ describe("public agent routes", () => {
 
     expect(metadata.alternates?.canonical).toBe(`${SITE_URL}/agent/${knownId}`);
     expect(metadata.robots).toMatchObject({ index: true, follow: true });
-    expect(metadata.title).toContain("Market Data Feed");
+    expect(metadata.title).toBe("Market Data Feed example agent profile");
     expect(metadata.openGraph).toMatchObject({
       url: `${SITE_URL}/agent/${knownId}`,
       images: [{ url: "https://app.suedeai.ai/opengraph.png" }],
@@ -84,11 +90,49 @@ describe("public agent routes", () => {
     expect(portfolio).not.toMatch(/<h1[^>]+(?:sr-only|hidden)/);
   });
 
-  it("lists stable public agent detail URLs in the sitemap", () => {
+  it("lists all 18 example agent pages in the sitemap", () => {
     const urls = sitemap().map((entry) => entry.url);
 
+    expect(urls).toHaveLength(19);
     expect(urls).toContain(`${SITE_URL}/agent/${knownId}`);
     expect(urls).not.toContain(`${SITE_URL}/agent/${unknownId}`);
+  });
+
+  it("uses a descriptive home title within 60 characters", async () => {
+    const layout = await import("@/app/layout");
+    const title = (layout.metadata.title as { default: string }).default;
+
+    expect(title.length).toBeLessThanOrEqual(60);
+    expect(title.toLowerCase()).toContain("agent earnings tracker");
+  });
+
+  it("gives every agent a unique title and description", async () => {
+    const page = await import("@/app/agent/[id]/page");
+    const { publicAgentData } = await import("@/lib/data/seed-provider");
+    const metas = await Promise.all(
+      publicAgentData().map(({ agent }) =>
+        page.generateMetadata({ params: Promise.resolve({ id: agent.id }) }),
+      ),
+    );
+
+    expect(new Set(metas.map((m) => m.title)).size).toBe(metas.length);
+    expect(new Set(metas.map((m) => m.description)).size).toBe(metas.length);
+    for (const m of metas) expect((m.description ?? "").length).toBeLessThanOrEqual(155);
+  });
+
+  it("emits agent JSON-LD with publisher and breadcrumbs and no offers", async () => {
+    const { agentJsonLd } = await import("@/lib/agent-seo");
+    const graph = agentJsonLd({ id: "agt_x", name: "X", category: "Data" })["@graph"] as Record<string, unknown>[];
+
+    expect(graph[0].publisher).toEqual({ "@id": "https://suedeai.ai/#organization" });
+    expect(graph[0]).not.toHaveProperty("offers");
+    expect(graph[1]["@type"]).toBe("BreadcrumbList");
+  });
+
+  it("has written profile content for every example agent", async () => {
+    const { AGENT_PROFILES } = await import("@/lib/agent-profiles");
+    const { publicAgentData } = await import("@/lib/data/seed-provider");
+    for (const { agent } of publicAgentData()) expect(AGENT_PROFILES[agent.slug], agent.slug).toBeDefined();
   });
 
   it("does not publish the validator-invalid SoftwareApplication isRelatedTo field", () => {

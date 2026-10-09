@@ -46,9 +46,8 @@ async function metadataFor(url: string): Promise<Metadata> {
 describe("meta keywords on every indexable page", () => {
   const urls = sitemap().map((entry) => entry.url);
 
-  it("covers the home page and every public agent", () => {
+  it("covers the home page and every indexable agent", () => {
     expect(urls[0]).toBe(SITE_URL);
-    expect(urls.length).toBeGreaterThan(1);
   });
 
   it.each(urls)("%s ships a complete keywords list", async (url) => {
