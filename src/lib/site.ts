@@ -30,6 +30,8 @@ export const builderLinks = {
  * so the footer points at the Suede AI pages that cover its apps and sites.
  */
 export const estateLinks = {
+  /** Canonical founder page; owns the https://suedeai.ai/founder#person entity. */
+  founder: "https://suedeai.ai/founder",
   contact: "https://suedeai.ai/contact",
   privacy: "https://suedeai.ai/privacy",
 } as const;

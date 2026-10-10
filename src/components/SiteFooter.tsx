@@ -11,6 +11,13 @@ export function SiteFooter({ sourceLabel, asOf }: { sourceLabel: string; asOf?: 
           <span style={{ color: "var(--text-muted)", fontSize: "var(--text-xs)" }}>
             The portfolio tracker for the x402 agents you've launched.
           </span>
+          <span style={{ color: "var(--text-muted)", fontSize: "var(--text-xs)" }}>
+            Built by{" "}
+            <a href={estateLinks.founder} style={{ color: "var(--text-muted)", textDecoration: "underline" }}>
+              Jason Colapietro
+            </a>
+            , founder of Suede AI
+          </span>
         </div>
 
         <div className="flex flex-col gap-2 sm:items-end">
