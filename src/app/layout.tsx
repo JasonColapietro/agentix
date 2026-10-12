@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { OG_IMAGE_URL, SITE_URL } from "@/lib/site";
+import { DEFAULT_DESCRIPTION, DEFAULT_TITLE } from "@/lib/home-seo";
 import { HOME_KEYWORDS } from "@/lib/seo-keywords";
 import "./globals.css";
 
@@ -13,9 +14,6 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const SITE_NAME = "Agentix";
-const DEFAULT_TITLE = "Agentix: x402 AI Agent Earnings Tracker for USDC on Base";
-const DEFAULT_DESCRIPTION =
-  "The portfolio tracker for the x402 agents you've launched. Total USDC earned on Base, calls, per-agent performance, status, and trend. One screen.";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   icons: {
@@ -39,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: SITE_URL,
+    url: `${SITE_URL}/`,
     siteName: SITE_NAME,
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
@@ -83,13 +81,16 @@ const jsonLd = {
       "@type": "Organization",
       "@id": SUEDE_ORG_ID,
       name: "Suede AI",
+      alternateName: ["Suede Labs"],
       url: "https://suedeai.ai",
+      foundingDate: "2024",
       founder: { "@id": JASON_PERSON_ID },
     },
     {
       "@type": "Person",
       "@id": JASON_PERSON_ID,
       name: "Jason Colapietro",
+      alternateName: ["Johnny Suede"],
       url: "https://suedeai.ai/founder",
     },
   ],

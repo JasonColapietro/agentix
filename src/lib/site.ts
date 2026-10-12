@@ -12,6 +12,22 @@ export const SITE_URL =
 export const BUILDER_URL =
   process.env.NEXT_PUBLIC_BUILDER_URL ?? "https://agents.suedeai.ai";
 
+/**
+ * Last content change per public surface, as YYYY-MM-DD, from git history.
+ * Feeds the sitemap <lastmod> and JSON-LD dateModified so the two agree.
+ * Bump the matching entry in the same commit that changes that surface's
+ * visible content (tests/sitemap-lastmod.test.ts checks the shape).
+ *   home    - src/app/page.tsx, PortfolioApp, dashboard/*, SiteFooter, layout
+ *   agents  - src/app/agent/*, AgentProfileContent, AgentDetailApp,
+ *             agent-profiles.ts, agent-seo.ts, data/seed.ts, SiteFooter
+ *   aiInstructions - public/ai-instructions.html
+ */
+export const CONTENT_LAST_MODIFIED = {
+  home: "2026-10-12",
+  agents: "2026-10-12",
+  aiInstructions: "2026-10-12",
+} as const;
+
 /** Shared Suede social card until Agentix has a dedicated image. */
 export const OG_IMAGE_URL = "https://app.suedeai.ai/opengraph.png";
 

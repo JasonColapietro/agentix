@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import React from "react";
 import { describe, expect, it, vi } from "vitest";
 import type { Metadata } from "next";
@@ -29,6 +30,12 @@ function expectGoodKeywords(route: string, keywords: string[]) {
 
 async function metadataFor(url: string): Promise<Metadata> {
   const path = url.slice(SITE_URL.length) || "/";
+  if (path === "/ai-instructions") {
+    // A static file in public/, served by the vercel.json rewrite.
+    const html = readFileSync("public/ai-instructions.html", "utf8");
+    const content = html.match(/<meta name="keywords" content="([^"]*)">/)?.[1] ?? "";
+    return { keywords: content.split(",").map((term) => term.trim()) };
+  }
   if (path === "/") {
     const page = await import("@/app/page");
     return page.metadata;
@@ -47,7 +54,7 @@ describe("meta keywords on every indexable page", () => {
   const urls = sitemap().map((entry) => entry.url);
 
   it("covers the home page and every indexable agent", () => {
-    expect(urls[0]).toBe(SITE_URL);
+    expect(urls[0]).toBe(`${SITE_URL}/`);
   });
 
   it.each(urls)("%s ships a complete keywords list", async (url) => {

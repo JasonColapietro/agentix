@@ -79,7 +79,7 @@ describe("public agent routes", () => {
     const homepage = await import("@/app/page");
 
     expect(layout).not.toContain("alternates: { canonical: SITE_URL }");
-    expect(homepage.metadata.alternates?.canonical).toBe(SITE_URL);
+    expect(homepage.metadata.alternates?.canonical).toBe(`${SITE_URL}/`);
   });
 
   it("gives the homepage one visible, answer-ready H1", () => {
@@ -93,7 +93,7 @@ describe("public agent routes", () => {
   it("lists all 18 example agent pages in the sitemap", () => {
     const urls = sitemap().map((entry) => entry.url);
 
-    expect(urls).toHaveLength(19);
+    expect(urls).toHaveLength(20);
     expect(urls).toContain(`${SITE_URL}/agent/${knownId}`);
     expect(urls).not.toContain(`${SITE_URL}/agent/${unknownId}`);
   });

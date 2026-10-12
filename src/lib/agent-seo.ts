@@ -1,6 +1,6 @@
 import type { Agent } from "@/lib/data/types";
 import type { SeedAgentData } from "@/lib/data/seed";
-import { SITE_URL } from "@/lib/site";
+import { CONTENT_LAST_MODIFIED, SITE_URL } from "@/lib/site";
 
 const SUEDE_ORG_ID = "https://suedeai.ai/#organization";
 const JASON_PERSON_ID = "https://suedeai.ai/founder#person";
@@ -14,15 +14,15 @@ export function agentTitle(agent: Pick<Agent, "name">): string {
   return `${agent.name} example agent profile`;
 }
 
-/** Unique per-agent description, <= 155 characters. */
+/** Unique per-agent description, 120 to 155 characters. */
 export function agentDescription(agent: Pick<Agent, "name" | "category">): string {
   return (
-    `Example ${agent.category.toLowerCase()} agent profile for ${agent.name} in Agentix: ` +
-    "x402 price, status, calls, grade, and USDC earnings trend."
+    `Example ${agent.category.toLowerCase()} agent profile for ${agent.name} in Agentix, the x402 agent earnings tracker: ` +
+    "per-call price, status, calls, grade and USDC trend."
   );
 }
 
-/** SoftwareApplication + BreadcrumbList JSON-LD for an agent profile. */
+/** WebPage + SoftwareApplication + BreadcrumbList JSON-LD for an agent profile. */
 export function agentJsonLd(
   agent: Pick<Agent, "id" | "name" | "category">,
 ): Record<string, unknown> {
@@ -44,10 +44,24 @@ export function agentJsonLd(
       app,
       {
         "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Agentix", item: SITE_URL },
           { "@type": "ListItem", position: 2, name: agent.name, item: url },
         ],
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${url}#webpage`,
+        url,
+        name: `${agentTitle(agent)} | Agentix`,
+        description: agentDescription(agent),
+        inLanguage: "en",
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        about: { "@id": `${url}#app` },
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+        publisher: { "@id": SUEDE_ORG_ID },
+        dateModified: CONTENT_LAST_MODIFIED.agents,
       },
     ],
   };
