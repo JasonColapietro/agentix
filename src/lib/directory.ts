@@ -4,6 +4,7 @@ const round = (n: number) => Math.round(n);
 const round2 = (n: number) => Math.round(n * 100) / 100;
 const clamp = (n: number, min = 0, max = 100) => Math.max(min, Math.min(max, n));
 const sum = (ns: number[]) => ns.reduce((a, b) => a + b, 0);
+const MIN_RELIABILITY_PCT = 96;
 
 export interface DirectorySignal {
   score: number;
@@ -43,8 +44,11 @@ export function directorySignal(agent: AgentWithStats): DirectorySignal {
     listingScore * 0.08,
   );
 
+  // Match the displayed reliability used by both attention surfaces.
+  const lowReliability = round(reliabilityPct) < MIN_RELIABILITY_PCT;
+
   let label = "Needs proof";
-  if (agent.status === "down" || agent.status === "degraded") label = "Needs attention";
+  if (agent.status === "down" || agent.status === "degraded" || lowReliability) label = "Needs attention";
   else if (score >= 86) label = "Prime listing";
   else if (score >= 72) label = "Worth watching";
   else if (score >= 58) label = "Prove demand";
@@ -52,6 +56,9 @@ export function directorySignal(agent: AgentWithStats): DirectorySignal {
   let reason = "Add demand and health data before promoting it.";
   if (agent.status === "down") reason = "Fix uptime before buyers trust the listing.";
   else if (agent.status === "degraded") reason = "Check the degraded status before promoting this listing.";
+  else if (lowReliability) reason = calls > 0
+    ? "Review failed calls before promoting this listing."
+    : "Record call outcomes before promoting this listing.";
   else if (!agent.x402Url) reason = "Add the public x402 listing URL so buyers can inspect it.";
   else if (score >= 86) reason = "Strong recorded revenue and reliable recorded calls.";
   else if (score >= 72) reason = "Recorded activity is promising; review buyer fit and positioning.";
@@ -69,7 +76,7 @@ export function topDirectoryAgents(agents: AgentWithStats[], count = 3): AgentWi
 /** Shared by the directory filter and Fix next cards. */
 export function needsAttention(agent: AgentWithStats): boolean {
   const signal = directorySignal(agent);
-  return agent.status !== "live" || signal.reliabilityPct < 96 || signal.score < 58;
+  return agent.status !== "live" || signal.reliabilityPct < MIN_RELIABILITY_PCT || signal.score < 58;
 }
 
 export function attentionAgents(agents: AgentWithStats[], count = 3): AgentWithStats[] {

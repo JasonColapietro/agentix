@@ -3,9 +3,18 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { AgentBoard } from "@/components/dashboard/AgentBoard";
 import { DirectoryHighlights } from "@/components/dashboard/DirectoryHighlights";
+import { highRevenueUnreliableListing } from "./directory-fixtures";
 import { examplePortfolio } from "@/lib/data/local-store";
 
 describe("directory surfaces", () => {
+  it("explains the recorded reliability problem in Fix next for a high-scoring live agent", () => {
+    const html = renderToStaticMarkup(createElement(DirectoryHighlights, { agents: [highRevenueUnreliableListing()] }));
+    const fixNext = html.slice(html.indexOf("Fix next"));
+    expect(fixNext).toContain("90% reliable");
+    expect(fixNext).toContain("Review failed calls");
+    expect(fixNext).not.toContain("reliable recorded calls");
+  });
+
   it("renders buyer positioning and scores while preserving illustrative listing safety", () => {
     const view = examplePortfolio();
     const html = renderToStaticMarkup(createElement(AgentBoard, { agents: view.agents, targets: {}, nowISO: view.now, editable: false, onChange: () => {} }));

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { attentionAgents, directorySignal } from "@/lib/directory";
+import { attentionAgents, directorySignal, needsAttention } from "@/lib/directory";
+import { highRevenueUnreliableListing } from "./directory-fixtures";
 import type { AgentStatus, AgentWithStats } from "@/lib/data/types";
 
 function listing(overrides: Partial<AgentWithStats> = {}): AgentWithStats {
@@ -42,6 +43,15 @@ describe("directory health and attention", () => {
   it.each([{ errors: 5, included: true }, { errors: 4, included: false }])("uses the reliability boundary with $errors failures in 100 calls", ({ errors, included }) => {
     const agent = listing({ stats: { ...listing().stats, errors } });
     expect(attentionAgents([agent])).toEqual(included ? [agent] : []);
+    expect(directorySignal(agent).label).toBe(included ? "Needs attention" : "Prime listing");
+  });
+
+  it("warns about recorded call failures even when real grading rewards steady revenue", () => {
+    const agent = highRevenueUnreliableListing();
+    expect(agent.grade?.score).toBe(80);
+    expect(directorySignal(agent)).toMatchObject({ score: 90, reliabilityPct: 90, label: "Needs attention" });
+    expect(directorySignal(agent).reason).toContain("Review failed calls");
+    expect(needsAttention(agent)).toBe(true);
   });
 
   it("prioritizes the affected revenue and honors the requested limit without mutating input", () => {
