@@ -31,6 +31,9 @@ export interface AgentInput {
   ownerWallet: string;
   priceUsdc: number;
   category: string;
+  buyer?: string;
+  useCase?: string;
+  directoryNote?: string;
   status: AgentStatus;
   launchedAt: string;
 }
@@ -104,6 +107,9 @@ export function addAgent(input: AgentInput): Agent {
     x402Url: input.x402Url.trim(),
     priceUsdc: input.priceUsdc,
     category: input.category.trim() || "Other",
+    buyer: input.buyer?.trim(),
+    useCase: input.useCase?.trim(),
+    directoryNote: input.directoryNote?.trim(),
     launchedAt: normLaunch(input.launchedAt),
     status: input.status,
   };
@@ -124,6 +130,9 @@ export function updateAgent(id: string, patch: Partial<AgentInput>): void {
   if (patch.ownerWallet != null) a.ownerWallet = patch.ownerWallet.trim();
   if (patch.priceUsdc != null) a.priceUsdc = patch.priceUsdc;
   if (patch.category != null) a.category = patch.category.trim() || "Other";
+  if (patch.buyer != null) a.buyer = patch.buyer.trim();
+  if (patch.useCase != null) a.useCase = patch.useCase.trim();
+  if (patch.directoryNote != null) a.directoryNote = patch.directoryNote.trim();
   if (patch.status != null) a.status = patch.status;
   if (patch.launchedAt != null) a.launchedAt = normLaunch(patch.launchedAt);
   saveState(s);
