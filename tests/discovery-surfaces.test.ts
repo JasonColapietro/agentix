@@ -7,7 +7,7 @@ import { GET as llmsFull } from "@/app/llms-full.txt/route";
 import { agentDescription, agentJsonLd } from "@/lib/agent-seo";
 import { publicAgentData } from "@/lib/data/seed-provider";
 import { HOME_JSON_LD } from "@/lib/home-seo";
-import { CONTENT_LAST_MODIFIED, SITE_URL } from "@/lib/site";
+import { CONTENT_LAST_MODIFIED, OG_IMAGE_URL, SITE_URL } from "@/lib/site";
 
 Object.assign(globalThis, { React });
 
@@ -66,5 +66,17 @@ describe("search and answer-engine surfaces", () => {
 
   it("serves the shared IndexNow key as a bare static file", () => {
     expect(readFileSync("public/4c265a375effa42521f5b88bb3c28501.txt", "utf8")).toBe("4c265a375effa42521f5b88bb3c28501");
+  });
+
+  it("points every social preview at the Agentix card, not another product's", () => {
+    expect(OG_IMAGE_URL).toBe("https://agentix.suedeai.ai/og.png");
+    const route = readFileSync("src/app/og.png/route.tsx", "utf8");
+    expect(route).toContain('export const dynamic = "force-static"');
+    expect(route).toContain("ImageResponse");
+
+    const aiInstructions = readFileSync("public/ai-instructions.html", "utf8");
+    expect(aiInstructions).toContain(`<meta property="og:image" content="${OG_IMAGE_URL}">`);
+    expect(aiInstructions).toContain(`<meta name="twitter:image" content="${OG_IMAGE_URL}">`);
+    expect(aiInstructions).not.toContain("app.suedeai.ai/opengraph.png");
   });
 });
