@@ -28,8 +28,12 @@ export const CONTENT_LAST_MODIFIED = {
   aiInstructions: "2026-10-12",
 } as const;
 
-/** Shared Suede social card until Agentix has a dedicated image. */
-export const OG_IMAGE_URL = "https://app.suedeai.ai/opengraph.png";
+/**
+ * Agentix's own 1200x630 social card, prerendered by src/app/og.png/route.tsx.
+ * Always the production host: social crawlers fetch it from the shared URL, and
+ * public/ai-instructions.html carries the same literal.
+ */
+export const OG_IMAGE_URL = "https://agentix.suedeai.ai/og.png";
 
 /** Deep links into the builder's public surfaces (link, don't duplicate). */
 export const builderLinks = {

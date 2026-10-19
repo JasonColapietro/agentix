@@ -40,10 +40,10 @@ describe("public agent routes", () => {
     expect(metadata.title).toBe("Market Data Feed example agent profile");
     expect(metadata.openGraph).toMatchObject({
       url: `${SITE_URL}/agent/${knownId}`,
-      images: [{ url: "https://app.suedeai.ai/opengraph.png" }],
+      images: [{ url: "https://agentix.suedeai.ai/og.png" }],
     });
     expect(metadata.twitter).toMatchObject({
-      images: ["https://app.suedeai.ai/opengraph.png"],
+      images: ["https://agentix.suedeai.ai/og.png"],
     });
   });
 
