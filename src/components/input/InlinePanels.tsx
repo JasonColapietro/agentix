@@ -23,6 +23,9 @@ export function InlineAgentForm({ initial, onClose, onSaved }: { initial?: Agent
   const editing = !!initial;
   const [name, setName] = useState(initial?.name ?? "");
   const [category, setCategory] = useState(initial?.category ?? "");
+  const [buyer, setBuyer] = useState(initial?.buyer ?? "");
+  const [useCase, setUseCase] = useState(initial?.useCase ?? "");
+  const [directoryNote, setDirectoryNote] = useState(initial?.directoryNote ?? "");
   const [price, setPrice] = useState(initial ? String(initial.priceUsdc) : "");
   const [status, setStatus] = useState<AgentStatus>(initial?.status ?? "live");
   const [x402Url, setX402Url] = useState(initial?.x402Url ?? "");
@@ -35,7 +38,7 @@ export function InlineAgentForm({ initial, onClose, onSaved }: { initial?: Agent
     if (!name.trim()) return setError("Give the agent a name.");
     const priceNum = Number(price);
     if (!Number.isFinite(priceNum) || priceNum < 0) return setError("Price/call must be a number ≥ 0.");
-    const input: AgentInput = { name, category, priceUsdc: priceNum, status, x402Url, ownerWallet: wallet, launchedAt };
+    const input: AgentInput = { name, category, buyer, useCase, directoryNote, priceUsdc: priceNum, status, x402Url, ownerWallet: wallet, launchedAt };
     const agent = editing && initial ? (updateAgent(initial.id, input), { ...initial, ...input, priceUsdc: priceNum }) : addAgent(input);
     onSaved(agent as Agent);
     onClose();
@@ -54,6 +57,12 @@ export function InlineAgentForm({ initial, onClose, onSaved }: { initial?: Agent
               <option key={c} value={c} />
             ))}
           </datalist>
+        </Field>
+        <Field label="Buyer">
+          <input style={controlStyle} value={buyer} onChange={(e) => setBuyer(e.target.value)} placeholder="Data ops teams" />
+        </Field>
+        <Field label="Use case">
+          <input style={controlStyle} value={useCase} onChange={(e) => setUseCase(e.target.value)} placeholder="Extract structured facts from target pages" />
         </Field>
         <Field label="Price / call (USDC)">
           <input style={controlStyle} type="number" inputMode="decimal" step="0.01" min="0" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="0.10" />
@@ -74,6 +83,11 @@ export function InlineAgentForm({ initial, onClose, onSaved }: { initial?: Agent
         <Field label="Payout wallet (optional)">
           <input style={{ ...controlStyle, fontFamily: "var(--font-mono)", fontSize: "var(--text-sm)" }} value={wallet} onChange={(e) => setWallet(e.target.value)} placeholder="0x…" />
         </Field>
+        <div className="sm:col-span-2 lg:col-span-3">
+          <Field label="Directory note">
+            <input style={controlStyle} value={directoryNote} onChange={(e) => setDirectoryNote(e.target.value)} placeholder="High-volume crawler with steady paid demand" />
+          </Field>
+        </div>
 
         <div className="col-span-full mt-1 flex items-center justify-between gap-3">
           {error ? <p style={{ color: "var(--rights-red)", fontSize: "var(--text-sm)" }} role="alert">{error}</p> : <span />}

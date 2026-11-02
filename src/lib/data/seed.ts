@@ -26,6 +26,9 @@ interface SeedSpec {
   name: string;
   slug: string;
   category: string;
+  buyer: string;
+  useCase: string;
+  directoryNote: string;
   priceUsdc: number;
   status: AgentStatus;
   launchedDaysAgo: number;
@@ -42,24 +45,24 @@ interface SeedSpec {
  * $0.02 to $1.00, high-volume cheap agents alongside low-volume premium ones.
  */
 const SPECS: SeedSpec[] = [
-  { name: "Web Scraper Pro", slug: "web-scraper-pro", category: "Scraping", priceUsdc: 0.08, status: "live", launchedDaysAgo: 89, baseCalls: 70, growth: 1.012, volatility: 0.25, errorRate: 0.02, shape: "ramp" },
-  { name: "PDF Extractor", slug: "pdf-extractor", category: "Documents", priceUsdc: 0.2, status: "live", launchedDaysAgo: 80, baseCalls: 24, growth: 1.01, volatility: 0.2, errorRate: 0.015 },
-  { name: "Code Reviewer", slug: "code-reviewer", category: "Code", priceUsdc: 0.5, status: "live", launchedDaysAgo: 70, baseCalls: 12, growth: 1.016, volatility: 0.22, errorRate: 0.02, shape: "ramp" },
-  { name: "Sentiment Engine", slug: "sentiment-engine", category: "NLP", priceUsdc: 0.05, status: "live", launchedDaysAgo: 85, baseCalls: 120, growth: 1.01, volatility: 0.3, errorRate: 0.01 },
-  { name: "Geocode API", slug: "geocode-api", category: "Maps", priceUsdc: 0.02, status: "live", launchedDaysAgo: 88, baseCalls: 240, growth: 1.008, volatility: 0.2, errorRate: 0.005 },
-  { name: "Translation Bot", slug: "translation-bot", category: "Language", priceUsdc: 0.1, status: "live", launchedDaysAgo: 64, baseCalls: 30, growth: 1.012, volatility: 0.22, errorRate: 0.02 },
-  { name: "Market Data Feed", slug: "market-data-feed", category: "Markets", priceUsdc: 0.25, status: "live", launchedDaysAgo: 75, baseCalls: 40, growth: 1.014, volatility: 0.25, errorRate: 0.02, shape: "ramp" },
-  { name: "OCR Vision", slug: "ocr-vision", category: "Vision", priceUsdc: 0.15, status: "live", launchedDaysAgo: 50, baseCalls: 20, growth: 1.03, volatility: 0.28, errorRate: 0.02, shape: "ramp" },
-  { name: "Email Parser", slug: "email-parser", category: "Email", priceUsdc: 0.06, status: "live", launchedDaysAgo: 72, baseCalls: 55, growth: 1.01, volatility: 0.2, errorRate: 0.015 },
-  { name: "KYC Verifier", slug: "kyc-verifier", category: "Compliance", priceUsdc: 1.0, status: "degraded", launchedDaysAgo: 62, baseCalls: 7, growth: 1.004, volatility: 0.25, errorRate: 0.16, shape: "cliff", eventDaysAgo: 4 },
-  { name: "Weather Oracle", slug: "weather-oracle", category: "Weather", priceUsdc: 0.03, status: "live", launchedDaysAgo: 90, baseCalls: 160, growth: 1.006, volatility: 0.2, errorRate: 0.008 },
-  { name: "Stock Quote", slug: "stock-quote", category: "Markets", priceUsdc: 0.04, status: "paused", launchedDaysAgo: 80, baseCalls: 90, growth: 1.006, volatility: 0.2, errorRate: 0.01, shape: "pause", eventDaysAgo: 9 },
-  { name: "Image Moderation", slug: "image-moderation", category: "Moderation", priceUsdc: 0.12, status: "live", launchedDaysAgo: 58, baseCalls: 26, growth: 1.012, volatility: 0.24, errorRate: 0.02 },
-  { name: "SEO Auditor", slug: "seo-auditor", category: "SEO", priceUsdc: 0.3, status: "down", launchedDaysAgo: 33, baseCalls: 10, growth: 1.01, volatility: 0.28, errorRate: 0.03, shape: "cliff", eventDaysAgo: 2 },
-  { name: "Summarizer", slug: "summarizer", category: "NLP", priceUsdc: 0.07, status: "live", launchedDaysAgo: 48, baseCalls: 60, growth: 1.025, volatility: 0.3, errorRate: 0.012, shape: "ramp" },
-  { name: "Sports Odds", slug: "sports-odds", category: "Sports", priceUsdc: 0.09, status: "live", launchedDaysAgo: 70, baseCalls: 35, growth: 1.01, volatility: 0.25, errorRate: 0.02 },
-  { name: "Forecast Engine", slug: "forecast-engine", category: "Analytics", priceUsdc: 0.4, status: "draft", launchedDaysAgo: 12, baseCalls: 0, growth: 1, volatility: 0, errorRate: 0 },
-  { name: "Address Validator", slug: "address-validator", category: "Data", priceUsdc: 0.03, status: "live", launchedDaysAgo: 84, baseCalls: 75, growth: 1.008, volatility: 0.2, errorRate: 0.01 },
+  { name: "Web Scraper Pro", slug: "web-scraper-pro", category: "Scraping", buyer: "Data ops and price-intel teams", useCase: "Extract structured facts from target pages for downstream agents.", directoryNote: "Example: structured web extraction for downstream workflows.", priceUsdc: 0.08, status: "live", launchedDaysAgo: 89, baseCalls: 70, growth: 1.012, volatility: 0.25, errorRate: 0.02, shape: "ramp" },
+  { name: "PDF Extractor", slug: "pdf-extractor", category: "Documents", buyer: "Ops teams with document intake queues", useCase: "Turn PDFs into normalized fields, tables, and summaries.", directoryNote: "Example: document intake with field and table extraction.", priceUsdc: 0.2, status: "live", launchedDaysAgo: 80, baseCalls: 24, growth: 1.01, volatility: 0.2, errorRate: 0.015 },
+  { name: "Code Reviewer", slug: "code-reviewer", category: "Code", buyer: "Engineering teams and coding agents", useCase: "Review a diff and return ranked issues before human review.", directoryNote: "Example: diff review before a human code review.", priceUsdc: 0.5, status: "live", launchedDaysAgo: 70, baseCalls: 12, growth: 1.016, volatility: 0.22, errorRate: 0.02, shape: "ramp" },
+  { name: "Sentiment Engine", slug: "sentiment-engine", category: "NLP", buyer: "Support, research, and brand teams", useCase: "Classify tone, risk, and intent from text at API speed.", directoryNote: "Example: tone and intent classification for text workflows.", priceUsdc: 0.05, status: "live", launchedDaysAgo: 85, baseCalls: 120, growth: 1.01, volatility: 0.3, errorRate: 0.01 },
+  { name: "Geocode API", slug: "geocode-api", category: "Maps", buyer: "Logistics, delivery, and field-service apps", useCase: "Resolve messy addresses into coordinates and clean location data.", directoryNote: "Example: address resolution for location-based workflows.", priceUsdc: 0.02, status: "live", launchedDaysAgo: 88, baseCalls: 240, growth: 1.008, volatility: 0.2, errorRate: 0.005 },
+  { name: "Translation Bot", slug: "translation-bot", category: "Language", buyer: "Global support and localization teams", useCase: "Translate messages and preserve labels for routed workflows.", directoryNote: "Example: translation in support and localization workflows.", priceUsdc: 0.1, status: "live", launchedDaysAgo: 64, baseCalls: 30, growth: 1.012, volatility: 0.22, errorRate: 0.02 },
+  { name: "Market Data Feed", slug: "market-data-feed", category: "Markets", buyer: "Trading dashboards and finance agents", useCase: "Return normalized market snapshots for automated briefings.", directoryNote: "Example: normalized market snapshots for briefings.", priceUsdc: 0.25, status: "live", launchedDaysAgo: 75, baseCalls: 40, growth: 1.014, volatility: 0.25, errorRate: 0.02, shape: "ramp" },
+  { name: "OCR Vision", slug: "ocr-vision", category: "Vision", buyer: "Back-office automation teams", useCase: "Read text from images, scans, labels, and mobile photos.", directoryNote: "Example: text extraction from scans and photos.", priceUsdc: 0.15, status: "live", launchedDaysAgo: 50, baseCalls: 20, growth: 1.03, volatility: 0.28, errorRate: 0.02, shape: "ramp" },
+  { name: "Email Parser", slug: "email-parser", category: "Email", buyer: "RevOps, support, and inbox automation agents", useCase: "Extract sender intent, fields, and next action from inbound email.", directoryNote: "Example: structured fields from inbound messages.", priceUsdc: 0.06, status: "live", launchedDaysAgo: 72, baseCalls: 55, growth: 1.01, volatility: 0.2, errorRate: 0.015 },
+  { name: "KYC Verifier", slug: "kyc-verifier", category: "Compliance", buyer: "Fintech and onboarding teams", useCase: "Screen identity artifacts and return pass, review, or reject.", directoryNote: "Example: an onboarding workflow marked as degraded.", priceUsdc: 1.0, status: "degraded", launchedDaysAgo: 62, baseCalls: 7, growth: 1.004, volatility: 0.25, errorRate: 0.16, shape: "cliff", eventDaysAgo: 4 },
+  { name: "Weather Oracle", slug: "weather-oracle", category: "Weather", buyer: "Travel, routing, and outdoor operations apps", useCase: "Answer weather-sensitive workflow questions from a single call.", directoryNote: "Example: weather context for operational decisions.", priceUsdc: 0.03, status: "live", launchedDaysAgo: 90, baseCalls: 160, growth: 1.006, volatility: 0.2, errorRate: 0.008 },
+  { name: "Stock Quote", slug: "stock-quote", category: "Markets", buyer: "Finance apps and research agents", useCase: "Return clean quote data and basic market context.", directoryNote: "Example: a paused market-data workflow.", priceUsdc: 0.04, status: "paused", launchedDaysAgo: 80, baseCalls: 90, growth: 1.006, volatility: 0.2, errorRate: 0.01, shape: "pause", eventDaysAgo: 9 },
+  { name: "Image Moderation", slug: "image-moderation", category: "Moderation", buyer: "Marketplaces and community products", useCase: "Classify images before publish or model ingestion.", directoryNote: "Example: image classification before publication.", priceUsdc: 0.12, status: "live", launchedDaysAgo: 58, baseCalls: 26, growth: 1.012, volatility: 0.24, errorRate: 0.02 },
+  { name: "SEO Auditor", slug: "seo-auditor", category: "SEO", buyer: "Content teams and site operators", useCase: "Score a URL and return fixes for metadata, structure, and search intent.", directoryNote: "Example: a site audit workflow marked as down.", priceUsdc: 0.3, status: "down", launchedDaysAgo: 33, baseCalls: 10, growth: 1.01, volatility: 0.28, errorRate: 0.03, shape: "cliff", eventDaysAgo: 2 },
+  { name: "Summarizer", slug: "summarizer", category: "NLP", buyer: "Analysts, researchers, and agent workflows", useCase: "Condense long inputs into decision-ready summaries.", directoryNote: "Example: condensing long inputs into summaries.", priceUsdc: 0.07, status: "live", launchedDaysAgo: 48, baseCalls: 60, growth: 1.025, volatility: 0.3, errorRate: 0.012, shape: "ramp" },
+  { name: "Sports Odds", slug: "sports-odds", category: "Sports", buyer: "Sports apps and newsletter operators", useCase: "Normalize odds, matchup notes, and movement signals.", directoryNote: "Example: normalized sports data for applications.", priceUsdc: 0.09, status: "live", launchedDaysAgo: 70, baseCalls: 35, growth: 1.01, volatility: 0.25, errorRate: 0.02 },
+  { name: "Forecast Engine", slug: "forecast-engine", category: "Analytics", buyer: "Ops teams testing prediction workflows", useCase: "Turn time-series context into a forecast and confidence band.", directoryNote: "Example: a draft forecast workflow without launch data.", priceUsdc: 0.4, status: "draft", launchedDaysAgo: 12, baseCalls: 0, growth: 1, volatility: 0, errorRate: 0 },
+  { name: "Address Validator", slug: "address-validator", category: "Data", buyer: "Commerce, CRM, and logistics teams", useCase: "Clean, validate, and standardize address inputs.", directoryNote: "Example: address validation for data-cleaning workflows.", priceUsdc: 0.03, status: "live", launchedDaysAgo: 84, baseCalls: 75, growth: 1.008, volatility: 0.2, errorRate: 0.01 },
 ];
 
 // ── deterministic PRNG ────────────────────────────────────────────────────
@@ -103,6 +106,9 @@ function buildAgent(spec: SeedSpec): Agent {
     x402Url: "",
     priceUsdc: spec.priceUsdc,
     category: spec.category,
+    buyer: spec.buyer,
+    useCase: spec.useCase,
+    directoryNote: spec.directoryNote,
     launchedAt,
     status: spec.status,
   };

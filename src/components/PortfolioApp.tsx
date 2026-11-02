@@ -13,6 +13,7 @@ import { TrendPanel } from "@/components/dashboard/TrendPanel";
 import { Allocation } from "@/components/dashboard/Allocation";
 import { Goals } from "@/components/dashboard/Goals";
 import { AgentBoard } from "@/components/dashboard/AgentBoard";
+import { DirectoryHighlights } from "@/components/dashboard/DirectoryHighlights";
 
 function formatAsOf(iso: string): string {
   return new Date(iso).toLocaleString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "UTC", hour12: false }) + " UTC";
@@ -49,9 +50,9 @@ export function PortfolioApp() {
             Agent portfolio earnings tracker
           </h1>
           <p className="mb-3" style={{ color: "var(--text-muted)", fontSize: "var(--text-sm)" }}>
-            This is the earnings tracker. To build and launch an agent, go to{" "}
+            Catalog and compare your tracked agents here. Build and launch them in{" "}
             <a href="https://agents.suedeai.ai" target="_blank" rel="noreferrer" style={{ color: "var(--text-muted)", textDecoration: "underline" }}>
-              agents.suedeai.ai
+              Suede AI Agent Studio
             </a>.
           </p>
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
@@ -87,6 +88,7 @@ export function PortfolioApp() {
 
         <div className="flex flex-col gap-8">
           <StatTiles summary={summary} />
+          <DirectoryHighlights agents={agents} />
           <TrendPanel trend={summary.trend} />
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             <div className="lg:col-span-2">
