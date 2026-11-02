@@ -76,6 +76,7 @@ const jsonLd = {
       operatingSystem: "Web",
       author: { "@id": JASON_PERSON_ID },
       publisher: { "@id": SUEDE_ORG_ID },
+      sameAs: ["https://apps.apple.com/us/app/agentix-ai-agent-tracker/id6778286160"],
     },
     {
       "@type": "Organization",
@@ -92,6 +93,19 @@ const jsonLd = {
       name: "Jason Colapietro",
       alternateName: ["Johnny Suede"],
       url: "https://suedeai.ai/founder",
+      jobTitle: "Founder and CEO, Suede AI",
+      sameAs: [
+        "https://www.wikidata.org/wiki/Q140235755",
+        "https://www.crunchbase.com/person/jason-colapietro-d83e",
+        "https://apps.apple.com/us/developer/jason-colapietro/id1895958699",
+        "https://github.com/JasonColapietro",
+        "https://www.linkedin.com/in/jasoncolapietro",
+        "https://x.com/johnnysuede",
+        "https://www.youtube.com/@johnnysuede",
+        "https://jasoncolapietro.substack.com",
+        "https://jasoncolapietro.com",
+        "https://johnnysuede.com",
+      ],
     },
   ],
 };
