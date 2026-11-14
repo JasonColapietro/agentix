@@ -93,7 +93,8 @@ describe("public agent routes", () => {
   it("lists all 18 example agent pages in the sitemap", () => {
     const urls = sitemap().map((entry) => entry.url);
 
-    expect(urls).toHaveLength(20);
+    // home + 18 agents + notes index + 3 notes + ai-instructions
+    expect(urls).toHaveLength(24);
     expect(urls).toContain(`${SITE_URL}/agent/${knownId}`);
     expect(urls).not.toContain(`${SITE_URL}/agent/${unknownId}`);
   });

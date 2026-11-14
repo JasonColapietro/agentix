@@ -40,6 +40,15 @@ async function metadataFor(url: string): Promise<Metadata> {
     const page = await import("@/app/page");
     return page.metadata;
   }
+  if (path === "/notes") {
+    const page = await import("@/app/notes/page");
+    return page.metadata;
+  }
+  const note = path.match(/^\/notes\/([^/]+)$/);
+  if (note) {
+    const page = await import("@/app/notes/[slug]/page");
+    return page.generateMetadata({ params: Promise.resolve({ slug: note[1] }) });
+  }
   const match = path.match(/^\/agent\/([^/]+)$/);
   if (match) {
     const page = await import("@/app/agent/[id]/page");

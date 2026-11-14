@@ -11,6 +11,7 @@ import { PLATFORM_TAKE_RATE } from "@/lib/data/seed";
 import { publicAgentData } from "@/lib/data/seed-provider";
 import { num, usd, usdPrecise } from "@/lib/format";
 import { DEFAULT_DESCRIPTION, DEFAULT_TITLE } from "@/lib/home-seo";
+import { NOTES, NOTES_INDEX, noteMarkdown, notePath } from "@/lib/notes";
 import { BUILDER_URL, CONTENT_LAST_MODIFIED, SITE_URL, estateLinks } from "@/lib/site";
 
 const STATUS_NOTE: Record<string, string> = {
@@ -106,6 +107,31 @@ export function buildLlmsFull(): string {
     ...agents.map(({ agent }) => `- [${agent.name}](${agentPath(agent.id)}): ${agent.category}, ${usdPrecise(agent.priceUsdc)} per call`),
     "",
     ...agents.flatMap((_, index) => ["---", "", agentSection(index), ""]),
+    "---",
+    "",
+    `## ${NOTES_INDEX.title}`,
+    "",
+    `URL: ${SITE_URL}/notes`,
+    `Last updated: ${CONTENT_LAST_MODIFIED.notes}`,
+    "",
+    NOTES_INDEX.description,
+    "",
+    ...NOTES.map((note) => `- [${note.title}](${notePath(note.slug)}): ${note.summary}`),
+    "",
+    ...NOTES.flatMap((note) => [
+      "---",
+      "",
+      `## ${note.title}`,
+      "",
+      `URL: ${notePath(note.slug)}`,
+      `Last updated: ${CONTENT_LAST_MODIFIED.notes}`,
+      "Author: Jason Colapietro, Founder and CEO, Suede AI, West Palm Beach, Florida (https://suedeai.ai/founder)",
+      "",
+      `> ${note.description}`,
+      "",
+      noteMarkdown(note),
+      "",
+    ]),
     "---",
     "",
     "## AI Instructions | Agentix",

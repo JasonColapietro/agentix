@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { publicAgentData } from "@/lib/data/seed-provider";
+import { NOTES, notePath } from "@/lib/notes";
 import { CONTENT_LAST_MODIFIED, SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -16,6 +17,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: CONTENT_LAST_MODIFIED.agents,
       changeFrequency: "weekly" as const,
       priority: 0.6,
+    })),
+    {
+      url: `${SITE_URL}/notes`,
+      lastModified: CONTENT_LAST_MODIFIED.notes,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    ...NOTES.map((note) => ({
+      url: notePath(note.slug),
+      lastModified: CONTENT_LAST_MODIFIED.notes,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
     })),
     {
       url: `${SITE_URL}/ai-instructions`,

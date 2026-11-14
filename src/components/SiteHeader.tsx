@@ -23,6 +23,9 @@ export function SiteHeader({ ownerWallet }: { ownerWallet?: string }) {
         </Link>
 
         <div className="flex items-center gap-3">
+          <Link href="/notes" className="mono no-underline" style={{ fontSize: "var(--text-xs)", color: "var(--text-muted)" }}>
+            Notes
+          </Link>
           {ownerWallet ? (
             <span
               className="mono hidden items-center gap-1.5 rounded-full px-2.5 py-1 sm:inline-flex"

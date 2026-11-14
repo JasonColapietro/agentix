@@ -21,11 +21,13 @@ export const BUILDER_URL =
  *   agents  - src/app/agent/*, AgentProfileContent, AgentDetailApp,
  *             agent-profiles.ts, agent-seo.ts, data/seed.ts, SiteFooter
  *   aiInstructions - public/ai-instructions.html
+ *   notes   - src/lib/notes.ts, src/app/notes/*, NoteBody, SiteFooter
  */
 export const CONTENT_LAST_MODIFIED = {
-  home: "2026-10-12",
-  agents: "2026-10-12",
+  home: "2026-11-14",
+  agents: "2026-11-14",
   aiInstructions: "2026-10-12",
+  notes: "2026-11-14",
 } as const;
 
 /**
