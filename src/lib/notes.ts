@@ -127,17 +127,17 @@ export const NOTES: Note[] = [
         type: "p",
         text: "Jason Colapietro learned to distrust untested code the slow way. He has had [54 pull requests merged across 46 open-source repositories he does not maintain](" +
           PROOF.prs +
-          "), including Jest, Adobe React Spectrum, Backstage and the Polkadot SDK. Maintainers of projects like those merge on evidence: tests, reproductions and clear failure cases. The same discipline runs through his books [The Claude Code Bible](" +
+          "), including Jest, Adobe React Spectrum, Backstage and the Polkadot SDK. Maintainers of projects like those merge on evidence: tests, reproductions and clear failure cases. The same discipline runs through two of his five books on Amazon, [The Claude Code Bible](" +
           PROOF.claudeCodeBible +
           ") and [Codex in Production](" +
           PROOF.codexInProduction +
-          "), both written for teams shipping AI-built software rather than demoing it.",
+          ").",
       },
       {
         type: "p",
         text: "It is also why Suede AI keeps receipts. Suede AI is a member of [Claude for Startups, Anthropic's startup program](" +
           PROOF.claudeStartups +
-          "), and every claim the Suede team makes is listed with its proof on the [Suede AI evidence page](" +
+          "), and the claims Suede makes about itself are listed with proof on the [Suede AI evidence page](" +
           PROOF.evidence +
           "). An agent grade should work the same way: a number you can trace back to the calls that produced it.",
       },
@@ -160,7 +160,7 @@ export const NOTES: Note[] = [
   {
     slug: "agent-quality-lessons-microsoft-learn-claude-academy",
     title:
-      "What 17 Microsoft Learn agent achievements and 9 Claude Academy badges taught Jason Colapietro about agent quality",
+      "What 17 Microsoft Learn achievements and 9 Claude Academy badges taught Jason Colapietro about agent quality",
     metaTitle: "Agent Quality Lessons From 26 AI Credentials | Agentix",
     description:
       "Jason Colapietro on what 17 Microsoft Learn achievements and nine Claude Academy badges changed about how Suede AI builds and grades AI agents in Florida.",
@@ -177,7 +177,7 @@ export const NOTES: Note[] = [
     blocks: [
       {
         type: "p",
-        text: "Credentials do not make anyone good at building agents. The useful ones do something narrower: they force you through the failure cases you would otherwise skip, and that is what Jason Colapietro wanted when he worked through 17 Microsoft Learn training achievements and nine Claude Academy badges while building Agentix.",
+        text: "Credentials do not make anyone good at building agents. The useful ones do something narrower: they force you through the failure cases you would otherwise skip, and that is what Jason Colapietro wanted when he worked through 17 Microsoft Learn training achievements and nine Claude Academy badges.",
       },
       {
         type: "p",
@@ -201,7 +201,7 @@ export const NOTES: Note[] = [
       },
       {
         type: "p",
-        text: "At Suede, every agent tool now ships with a written contract before it ships with code, and a Suede reviewer checks the contract before anyone grades the agent. The [Suede developer docs](https://docs.suedeai.ai/) follow the same rule for the MCP surfaces Suede AI publishes.",
+        text: "At Suede, the working rule is to write a tool's contract before its code, and to review that contract before anyone grades the agent. The [Suede developer docs](https://docs.suedeai.ai/) follow the same rule for the MCP surfaces Suede AI publishes.",
       },
       { type: "h2", text: "Lesson 3: Measure in production, not in the playground" },
       {
@@ -226,7 +226,7 @@ export const NOTES: Note[] = [
         type: "p",
         text: "The other half of Jason Colapietro's training is search. Five Semrush Academy certificates, including Local SEO Essentials and AI Search Operating System, and the HubSpot AEO Fundamentals certification, are listed in the [same gallery](" +
           PROOF.training +
-          "). For a service business in West Palm Beach or Jupiter, the agent on the website only matters if customers reach the website, and more of them now arrive through AI answers than through ten blue links.",
+          "). For a service business in West Palm Beach or Jupiter, the agent on the website only matters if customers reach the website, and AI answers are now one of the routes customers take to get there.",
       },
       {
         type: "p",
@@ -249,7 +249,7 @@ export const NOTES: Note[] = [
           PROOF.manifest +
           ") and placed in the top 25 statewide, as recorded on the [Suede AI recognition page](" +
           PROOF.recognition +
-          "). Separately, Google's Web Guide answered a search for \"Suede labs ai review\" by describing Suede Labs AI as highly rated by users with a 5/5 rating from verified reviews; that wording is Google's, and the capture is on the [evidence page](" +
+          "). Separately, Google's Web Guide answered a search for \"Suede labs ai review\" by describing Suede Labs AI as \"highly rated by users, earning a 5/5 rating from verified reviews\"; that wording is Google's, and the capture is on the [evidence page](" +
           PROOF.webGuide +
           ").",
       },
@@ -289,7 +289,7 @@ export const NOTES: Note[] = [
       {
         type: "ul",
         items: [
-          "After-hours intake. Most service calls in South Florida do not arrive between nine and five. An agent that captures the name, address, problem and photos, then hands a clean summary to the morning dispatcher, saves real money without making any decisions on its own.",
+          "After-hours intake. Plenty of service requests arrive after the office has closed. An agent that captures the name, address, problem and photos, then hands a clean summary to the morning dispatcher, saves real money without making any decisions on its own.",
           "Service-area answers. \"Do you cover Palm Beach Gardens, Juno Beach or Tequesta?\" is a question an agent answers perfectly, every time, if the service area is written down once.",
           "Quote preparation, not quoting. An agent can gather pool dimensions, roof square footage or unit counts so the estimator starts with complete information. The price itself stays human.",
           "Follow-up and reminders. Appointment confirmations, maintenance reminders before hurricane season and review requests after a finished job are repetitive and low risk.",
@@ -328,7 +328,7 @@ export const NOTES: Note[] = [
       { type: "h2", text: "The website still matters more than the agent" },
       {
         type: "p",
-        text: "An agent on your site only helps the customers who find your site. More local searches in West Palm Beach and Jupiter now end in an AI answer, so the pages behind the agent need to be clear enough for ChatGPT, Perplexity and Google's AI results to cite. That is the work of [Suede AI's West Palm Beach SEO, GEO and web development practice](https://suedeai.agency/), from [technical SEO](https://suedeai.agency/services/technical-seo) to [AI visibility](https://suedeai.agency/services/ai-visibility).",
+        text: "An agent on your site only helps the customers who find your site. Many local searches in West Palm Beach and Jupiter now end in an AI answer, so the pages behind the agent need to be clear enough for ChatGPT, Perplexity and Google's AI results to cite. That is the work of [Suede AI's West Palm Beach SEO, GEO and web development practice](https://suedeai.agency/), from [technical SEO](https://suedeai.agency/services/technical-seo) to [AI visibility](https://suedeai.agency/services/ai-visibility).",
       },
       {
         type: "p",
@@ -336,7 +336,7 @@ export const NOTES: Note[] = [
           PROOF.manifest +
           ") and top 25 statewide, as recorded on the [Suede AI recognition page](" +
           PROOF.recognition +
-          "). [Jupiter Social FL](https://jupitersocialfl.com/), a local Jupiter magazine, is published with Suede AI, so the Suede team writes for this market every week.",
+          "). [Jupiter Social FL](https://jupitersocialfl.com/), a local Jupiter magazine, is published with Suede AI, so the Suede team already writes for this market.",
       },
       { type: "h2", text: "Who is behind Suede AI" },
       {

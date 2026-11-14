@@ -16,7 +16,7 @@ const FORBIDDEN = [
   /\$\s?(28|30)\s?m/i,
   /multimillion/i,
   /\bFAU\b/,
-  /\bdelve|leverage|unlock|elevate|seamless|game-changer|tapestry|realm\b/i,
+  /\b(delve|leverage|unlock|elevate|seamless|game-changer|tapestry|realm)/i,
   /—/,
   /Victorian Lane/i,
 ];

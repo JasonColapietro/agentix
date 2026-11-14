@@ -34,7 +34,7 @@ The 18 public agent profiles and their earnings figures are deterministic illust
 
 - [Agent grading notes](https://agentix.suedeai.ai/notes): Articles by Jason Colapietro, Founder and CEO of Suede AI in West Palm Beach, Florida.
 - [How to grade an AI agent before you deploy it in your business](https://agentix.suedeai.ai/notes/grade-an-ai-agent-before-you-deploy)
-- [What 17 Microsoft Learn agent achievements and 9 Claude Academy badges taught Jason Colapietro about agent quality](https://agentix.suedeai.ai/notes/agent-quality-lessons-microsoft-learn-claude-academy)
+- [What 17 Microsoft Learn achievements and 9 Claude Academy badges taught Jason Colapietro about agent quality](https://agentix.suedeai.ai/notes/agent-quality-lessons-microsoft-learn-claude-academy)
 - [AI agents for West Palm Beach and Jupiter service businesses: where they help and where they fail](https://agentix.suedeai.ai/notes/ai-agents-west-palm-beach-jupiter-service-businesses)
 
 ## Built by Suede AI

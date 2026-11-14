@@ -66,8 +66,8 @@ export function AuthorBox() {
       <p className="mt-2">
         <a href="https://suedeai.ai/founder" style={linkStyle}>Jason Colapietro</a>, Founder and CEO, Suede AI,
         West Palm Beach, Florida. Engineer, author of five books and builder of Agentix. More at{" "}
-        <a href="https://jasoncolapietro.com/" style={linkStyle}>jasoncolapietro.com</a>, with every claim
-        backed on the <a href="https://seo.suedeai.ai/evidence" style={linkStyle}>Suede AI evidence page</a>.
+        <a href="https://jasoncolapietro.com/" style={linkStyle}>jasoncolapietro.com</a>, with proof for these
+        claims on the <a href="https://seo.suedeai.ai/evidence" style={linkStyle}>Suede AI evidence page</a>.
       </p>
     </aside>
   );
