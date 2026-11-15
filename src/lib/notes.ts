@@ -487,7 +487,7 @@ export const NOTES: Note[] = [
       { type: "h2", text: "After launch: rerun the suite on every change" },
       {
         type: "p",
-        text: "Rerun the full suite whenever the prompt, the model, the source document or a connected tool changes, and log daily chats, handoffs and errors in [Agentix](/). In Agentix, which Jason Colapietro built to grade agents after launch, reliability is the inverse of the logged error rate, and an agent whose endpoint is down is capped at 55 out of 100, so a broken scheduling connection shows up as a falling grade before it shows up as a complaint. The broader pre-launch routine is in [How to grade an AI agent before you deploy it](/notes/grade-an-ai-agent-before-you-deploy).",
+        text: "Rerun the full suite whenever the prompt, the model, the source document or a connected tool changes, and log each day's conversations as calls and failed tool calls as errors in [Agentix](/). In Agentix, which Jason Colapietro built at Suede to grade agents after launch, reliability drops as the logged error rate rises, and an agent marked down is capped at 55 out of 100, so a broken scheduling connection shows up as a falling grade before it shows up as a complaint. The broader pre-launch routine is in [How to grade an AI agent before you deploy it](/notes/grade-an-ai-agent-before-you-deploy).",
       },
       { type: "h2", text: "Who wrote this rubric" },
       {
@@ -504,7 +504,7 @@ export const NOTES: Note[] = [
       { type: "h2", text: "Your next step" },
       {
         type: "p",
-        text: "Write the clinic's auto-fail list this week and have the practice manager sign it. Then draft ten of the 40 conversations from last month's real messages. If you run a clinic or practice in Wellington, West Palm Beach or elsewhere in Palm Beach County and want Suede AI to build the rubric, run the suite and check the website the agent lives on, start with the [free Suede AI assessment](https://suedeai.agency/assessment) or see how [Suede AI's West Palm Beach practice](https://suedeai.agency/) works. To see who you would be working with, read [Jason Colapietro's founder page](https://suedeai.ai/founder).",
+        text: "Write the clinic's auto-fail list this week and have the practice manager sign it. Then draft ten of the 40 conversations from last month's real messages. If you run a clinic or practice in Wellington, West Palm Beach or elsewhere in Palm Beach County and want Suede AI to build the rubric, run the suite and check the website the agent lives on, start with the [free Suede AI assessment](https://suedeai.agency/assessment) or see how [Suede AI's West Palm Beach practice](https://suedeai.agency/) works. Background, books and credentials are on [Jason Colapietro's founder page](https://suedeai.ai/founder).",
       },
     ],
   },
@@ -585,7 +585,7 @@ export const NOTES: Note[] = [
       { type: "h2", text: "Grade the handoffs, not only the answers" },
       {
         type: "p",
-        text: "Track two handoff numbers every week: the share of conversations handed off, and the share of handoffs a person judged unnecessary. A rising first number with a steady second one usually means demand changed. A rising second number means the triggers are too loose. In [Agentix](/), the grader Jason Colapietro built at Suede AI, log handoffs as part of daily activity and failed tool calls as errors; the reliability score falls with the error rate, so a broken calendar connection shows up in the grade. The scoring side of this is covered in [the chat agent evaluation rubric for a Wellington clinic](/notes/chat-agent-evaluation-rubric-wellington-clinic).",
+        text: "Track two handoff numbers every week: the share of conversations handed off, and the share of handoffs a person judged unnecessary. A rising first number with a steady second one usually means demand changed. A rising second number means the triggers are too loose. In [Agentix](/), the grader Jason Colapietro built at Suede AI, log each day's conversations as calls and failed tool calls as errors, and keep the handoff tally in your own weekly sheet; the reliability score falls as the error rate rises, so a broken calendar connection shows up in the grade. The scoring side of this is covered in [the chat agent evaluation rubric for a Wellington clinic](/notes/chat-agent-evaluation-rubric-wellington-clinic).",
       },
       {
         type: "p",
@@ -596,7 +596,7 @@ export const NOTES: Note[] = [
         type: "p",
         text: "Suede AI is an agentic platform company, and the Suede team (once known as Suede Labs) builds agents that have to work for small offices without an operations department. Jason Colapietro's habit of testing failure paths first comes from [54 merged pull requests across 46 open-source repositories he does not maintain](" +
           PROOF.prs +
-          "), including Adobe React Spectrum and the Polkadot SDK, and runs through his book [Proof as Infrastructure](" +
+          "), including Adobe React Spectrum and the Polkadot SDK, and Jason sets out the reasoning in his book [Proof as Infrastructure](" +
           PROOF.proofAsInfrastructure +
           "). Jason Colapietro has also shipped [nine iOS apps under his own Apple developer account](" +
           PROOF.apps +
@@ -609,7 +609,7 @@ export const NOTES: Note[] = [
       { type: "h2", text: "Your next step" },
       {
         type: "p",
-        text: "Pull last month's messages, sort them into cheap, recoverable and expensive, and run the staffing arithmetic for your own volume. If you run a service business in West Palm Beach, Jupiter or anywhere in Palm Beach County and want Suede AI to design the handoffs and the agent around them, start with the [free Suede AI assessment](https://suedeai.agency/assessment) or read about [Suede AI's West Palm Beach SEO, GEO and web practice](https://suedeai.agency/). Learn more about the founder on [Jason Colapietro's founder page](https://suedeai.ai/founder).",
+        text: "Pull last month's messages, sort them into cheap, recoverable and expensive, and run the staffing arithmetic for your own volume. If you run a service business in West Palm Beach, Jupiter or anywhere in Palm Beach County and want Suede to design the handoffs and the agent around them, start with the [free Suede AI assessment](https://suedeai.agency/assessment) or read about [Suede AI's West Palm Beach SEO, GEO and web practice](https://suedeai.agency/). Learn more about the founder on [Jason Colapietro's founder page](https://suedeai.ai/founder).",
       },
     ],
   },
