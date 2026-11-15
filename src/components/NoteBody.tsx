@@ -68,6 +68,10 @@ export function AuthorBox() {
         West Palm Beach, Florida. Engineer, author of five books and builder of Agentix. More at{" "}
         <a href="https://jasoncolapietro.com/" style={linkStyle}>jasoncolapietro.com</a>, with proof for these
         claims on the <a href="https://seo.suedeai.ai/evidence" style={linkStyle}>Suede AI evidence page</a>.
+        Suede AI ranks among <a href="https://clutch.co/profile/suede-ai-seo" style={linkStyle}>Clutch</a>&apos;s{" "}
+        <a href="https://clutch.co/consulting/ai/florida" style={linkStyle}>Top 30 AI Consultants in Florida</a> and{" "}
+        <a href="https://clutch.co/us/consulting/ai" style={linkStyle}>Top 50 AI Consultants nationwide</a> (November
+        2026).
       </p>
     </aside>
   );

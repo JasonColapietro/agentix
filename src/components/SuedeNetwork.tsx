@@ -31,6 +31,11 @@ export function SuedeNetwork() {
         Suede AI.
       </p>
       <p className="mt-2" style={muted}>
+        Suede AI ranks among <a href="https://clutch.co/profile/suede-ai-seo" style={link}>Clutch</a>&apos;s{" "}
+        <a href="https://clutch.co/consulting/ai/florida" style={link}>Top 30 AI Consultants in Florida</a> and{" "}
+        <a href="https://clutch.co/us/consulting/ai" style={link}>Top 50 AI Consultants nationwide</a> (November 2026).
+      </p>
+      <p className="mt-2" style={muted}>
         More from Suede AI:{" "}
         {SIBLING_SITES.map((site, i) => (
           <span key={site.href}>

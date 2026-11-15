@@ -24,10 +24,10 @@ export const BUILDER_URL =
  *   notes   - src/lib/notes.ts, src/app/notes/*, NoteBody, SiteFooter
  */
 export const CONTENT_LAST_MODIFIED = {
-  home: "2026-11-14",
-  agents: "2026-11-14",
+  home: "2026-11-15",
+  agents: "2026-11-15",
   aiInstructions: "2026-10-12",
-  notes: "2026-11-14",
+  notes: "2026-11-15",
 } as const;
 
 /**

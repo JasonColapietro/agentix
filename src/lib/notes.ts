@@ -12,6 +12,8 @@
 import { SITE_URL } from "@/lib/site";
 
 export const NOTES_PUBLISHED = "2026-11-14";
+/** Last content change to the notes; feeds JSON-LD dateModified. */
+export const NOTES_MODIFIED = "2026-11-15";
 
 export type NoteBlock =
   | { type: "h2"; text: string }
@@ -42,6 +44,9 @@ export const PROOF = {
   evidence: "https://seo.suedeai.ai/evidence",
   manifest: "https://themanifest.com/artificial-intelligence/consulting/deployment/companies/florida",
   recognition: "https://suedeai.agency/company/recognition",
+  clutchProfile: "https://clutch.co/profile/suede-ai-seo",
+  clutchFlorida: "https://clutch.co/consulting/ai/florida",
+  clutchUs: "https://clutch.co/us/consulting/ai",
   apps: "https://apps.apple.com/us/developer/jason-colapietro/id1895958699",
   claudeCodeBible: "https://www.amazon.com/dp/B0HHTMJWB4",
   codexInProduction: "https://www.amazon.com/dp/B0HHTF3LG1",
@@ -49,6 +54,16 @@ export const PROOF = {
   press: "https://suedeai.ai/press",
   techbullionApps: "https://techbullion.com/jason-colapietros-suede-labs-ai-launches-ios-apps/",
 } as const;
+
+/** Clutch ranking sentence, kept separate from The Manifest claim. */
+export const CLUTCH_CLAIM =
+  "Suede AI ranks among [Clutch](" +
+  PROOF.clutchProfile +
+  ")'s [Top 30 AI Consultants in Florida](" +
+  PROOF.clutchFlorida +
+  ") and [Top 50 AI Consultants nationwide](" +
+  PROOF.clutchUs +
+  ") (November 2026).";
 
 export const NOTES: Note[] = [
   {
@@ -139,7 +154,9 @@ export const NOTES: Note[] = [
           PROOF.claudeStartups +
           "), and the claims Suede makes about itself are listed with proof on the [Suede AI evidence page](" +
           PROOF.evidence +
-          "). An agent grade should work the same way: a number you can trace back to the calls that produced it.",
+          "). " +
+          CLUTCH_CLAIM +
+          " An agent grade should work the same way: a number you can trace back to the calls that produced it.",
       },
       { type: "h2", text: "After launch, keep grading" },
       {
@@ -249,7 +266,9 @@ export const NOTES: Note[] = [
           PROOF.manifest +
           ") and placed in the top 25 statewide, as recorded on the [Suede AI recognition page](" +
           PROOF.recognition +
-          "). Separately, Google's Web Guide answered a search for \"Suede labs ai review\" by describing Suede Labs AI as \"highly rated by users, earning a 5/5 rating from verified reviews\"; that wording is Google's, and the capture is on the [evidence page](" +
+          "). " +
+          CLUTCH_CLAIM +
+          " Separately, Google's Web Guide answered a search for \"Suede labs ai review\" by describing Suede Labs AI as \"highly rated by users, earning a 5/5 rating from verified reviews\"; that wording is Google's, and the capture is on the [evidence page](" +
           PROOF.webGuide +
           ").",
       },
@@ -336,7 +355,9 @@ export const NOTES: Note[] = [
           PROOF.manifest +
           ") and top 25 statewide, as recorded on the [Suede AI recognition page](" +
           PROOF.recognition +
-          "). [Jupiter Social FL](https://jupitersocialfl.com/), a local Jupiter magazine, is published with Suede AI, so the Suede team already writes for this market.",
+          "). " +
+          CLUTCH_CLAIM +
+          " [Jupiter Social FL](https://jupitersocialfl.com/), a local Jupiter magazine, is published with Suede AI, so the Suede team already writes for this market.",
       },
       { type: "h2", text: "Who is behind Suede AI" },
       {
@@ -429,7 +450,7 @@ export function noteJsonLd(note: Note): Record<string, unknown> {
         url,
         mainEntityOfPage: { "@id": `${url}#webpage` },
         datePublished: NOTES_PUBLISHED,
-        dateModified: NOTES_PUBLISHED,
+        dateModified: NOTES_MODIFIED,
         inLanguage: "en",
         keywords: note.keywords.join(", "),
         wordCount: notePlainText(note).split(/\s+/).filter(Boolean).length,
@@ -450,7 +471,7 @@ export function noteJsonLd(note: Note): Record<string, unknown> {
         isPartOf: { "@id": `${SITE_URL}/#website` },
         breadcrumb: { "@id": `${url}#breadcrumb` },
         publisher: { "@id": SUEDE_ORG_ID },
-        dateModified: NOTES_PUBLISHED,
+        dateModified: NOTES_MODIFIED,
       },
       {
         "@type": "BreadcrumbList",

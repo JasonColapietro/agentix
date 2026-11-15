@@ -79,6 +79,8 @@ export function buildLlmsFull(): string {
     "",
     `Publisher: Suede AI (https://suedeai.ai), also known as Suede Labs. Built by Jason Colapietro (${estateLinks.founder}).`,
     "",
+    "Recognition: Suede AI ranks among Clutch's Top 30 AI Consultants in Florida (https://clutch.co/consulting/ai/florida) and Top 50 AI Consultants nationwide (https://clutch.co/us/consulting/ai) (November 2026). Clutch profile: https://clutch.co/profile/suede-ai-seo",
+    "",
     "Important data note: the example agent profiles and their earnings figures are deterministic illustrative examples shown until an operator adds their own data. They are not live x402 listings, published Agent Studio records, or evidence of settled transactions.",
     "",
     "---",
