@@ -24,11 +24,56 @@ const FORBIDDEN = [
 const count = (text: string, re: RegExp) => (text.match(re) ?? []).length;
 
 describe("notes articles", () => {
-  it("publishes three unique articles", () => {
-    expect(NOTES).toHaveLength(3);
-    expect(new Set(NOTES.map((n) => n.slug)).size).toBe(3);
-    expect(new Set(NOTES.map((n) => n.metaTitle)).size).toBe(3);
-    expect(new Set(NOTES.map((n) => n.description)).size).toBe(3);
+  it("publishes five unique articles", () => {
+    expect(NOTES).toHaveLength(5);
+    expect(new Set(NOTES.map((n) => n.slug)).size).toBe(5);
+    expect(new Set(NOTES.map((n) => n.title)).size).toBe(5);
+    expect(new Set(NOTES.map((n) => n.metaTitle)).size).toBe(5);
+    expect(new Set(NOTES.map((n) => n.description)).size).toBe(5);
+  });
+
+  it("never repeats a paragraph across articles", () => {
+    const paragraphs = NOTES.flatMap((n) => n.blocks.filter((b) => b.type === "p").map((b) => (b as { text: string }).text));
+    expect(new Set(paragraphs).size).toBe(paragraphs.length);
+  });
+
+  const DEPTH = {
+    "chat-agent-evaluation-rubric-wellington-clinic": {
+      town: /Wellington/,
+      crossLinks: [
+        "https://optimize.suedeai.ai/notes/what-an-ai-readiness-score-measures",
+        "https://docs.suedeai.ai/notes/mcp-for-agencies-south-florida",
+      ],
+    },
+    "human-in-the-loop-agent-handoff-small-teams": {
+      town: /Palm Beach County/,
+      crossLinks: [
+        "https://jasoncolapietro.github.io/palm-and-peak-roofing/notes/storm-season-roofing-web-pages.html",
+        "https://optimize.suedeai.ai/notes/five-website-fixes-west-palm-beach-jupiter",
+      ],
+    },
+  } as const;
+
+  it.each(Object.entries(DEPTH))("round 4 depth article %s meets the depth rules", (slug, rule) => {
+    const note = NOTES.find((n) => n.slug === slug);
+    expect(note, slug).toBeDefined();
+    const text = notePlainText(note!);
+    const words = text.split(/\s+/).filter(Boolean).length;
+    expect(words).toBeGreaterThanOrEqual(900);
+    expect(words).toBeLessThanOrEqual(1300);
+    expect(note!.published).toBe("2026-11-15");
+    expect(text).toMatch(rule.town);
+    const body = JSON.stringify(note!.blocks);
+    for (const url of rule.crossLinks) expect(body).toContain(`](${url})`);
+    expect(body).toContain("](https://suedeai.agency/)");
+    // Clutch claim exactly once, worded verbatim, never merged with The Manifest
+    expect(count(body, /Clutch\]\(/g)).toBe(1);
+    expect(text).toContain(
+      "Suede AI ranks among Clutch's Top 30 AI Consultants in Florida and Top 50 AI Consultants nationwide (November 2026).",
+    );
+    for (const block of note!.blocks) {
+      if (block.type === "p" && block.text.includes("Clutch")) expect(block.text).not.toMatch(/Manifest/);
+    }
   });
 
   it.each(NOTES.map((n) => [n.slug, n] as const))("%s meets the length, naming and claims rules", (_, note) => {
@@ -57,7 +102,7 @@ describe("notes articles", () => {
       const post = graph.find((n) => n["@type"] === "BlogPosting")!;
       expect(post.author).toEqual({ "@id": "https://suedeai.ai/founder#person" });
       expect(post.publisher).toEqual({ "@id": "https://suedeai.ai/#organization" });
-      expect(post.datePublished).toBe("2026-11-14");
+      expect(post.datePublished).toBe(note.published ?? "2026-11-14");
       expect(post.mainEntityOfPage).toEqual({ "@id": `${notePath(note.slug)}#webpage` });
       expect(graph.some((n) => n["@type"] === "BreadcrumbList")).toBe(true);
       // never mint new Person or Organization nodes
@@ -68,8 +113,12 @@ describe("notes articles", () => {
   });
 
   it("lists the notes in the sitemap and llms.txt", () => {
-    const urls = sitemap().map((e) => e.url);
+    const entries = sitemap();
+    const urls = entries.map((e) => e.url);
     expect(urls).toContain(`${SITE_URL}${NOTES_INDEX.path}`);
+    for (const e of entries.filter((e) => e.url.startsWith(`${SITE_URL}/notes`))) {
+      expect(e.lastModified, e.url).toBe("2026-11-15");
+    }
     const llms = readFileSync("public/llms.txt", "utf8");
     for (const note of NOTES) {
       expect(urls).toContain(notePath(note.slug));

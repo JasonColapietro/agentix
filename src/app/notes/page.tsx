@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { NOTES, NOTES_INDEX, NOTES_PUBLISHED, notesIndexJsonLd } from "@/lib/notes";
+import { NOTES, NOTES_INDEX, formatNoteDate, notePublished, notesIndexJsonLd } from "@/lib/notes";
 import { withBrand } from "@/lib/seo-keywords";
 import { OG_IMAGE_URL, SITE_URL } from "@/lib/site";
 
@@ -57,7 +57,7 @@ export default function NotesIndexPage() {
               </h2>
               <p className="mt-2" style={{ fontSize: "var(--text-sm)", color: "var(--text-muted)" }}>{note.summary}</p>
               <p className="mono mt-3" style={{ fontSize: "var(--text-label)", color: "var(--text-muted)" }}>
-                Jason Colapietro · <time dateTime={NOTES_PUBLISHED}>November 14, 2026</time>
+                Jason Colapietro · <time dateTime={notePublished(note)}>{formatNoteDate(notePublished(note))}</time>
               </p>
             </li>
           ))}

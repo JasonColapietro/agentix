@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { AuthorBox, NoteBody } from "@/components/NoteBody";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { NOTES, NOTES_PUBLISHED, noteBySlug, noteJsonLd, notePath } from "@/lib/notes";
+import { NOTES, formatNoteDate, noteBySlug, noteJsonLd, notePath, notePublished } from "@/lib/notes";
 import { withBrand } from "@/lib/seo-keywords";
 import { OG_IMAGE_URL } from "@/lib/site";
 
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: NotePageProps): Promise<Metad
       siteName: "Agentix",
       title: note.metaTitle,
       description: note.description,
-      publishedTime: NOTES_PUBLISHED,
+      publishedTime: notePublished(note),
       authors: ["https://suedeai.ai/founder"],
       images: [{ url: OG_IMAGE_URL, width: 1200, height: 630, alt: "Agentix" }],
     },
@@ -70,7 +70,7 @@ export default async function NotePage({ params }: NotePageProps) {
           <h1 className="display" style={{ fontSize: "var(--text-h2)" }}>{note.title}</h1>
           <p className="mono mt-4" style={{ fontSize: "var(--text-xs)", color: "var(--text-muted)" }}>
             By <a href="https://suedeai.ai/founder" style={{ textDecoration: "underline" }}>Jason Colapietro</a> ·
-            Suede AI, West Palm Beach, Florida · <time dateTime={NOTES_PUBLISHED}>November 14, 2026</time>
+            Suede AI, West Palm Beach, Florida · <time dateTime={notePublished(note)}>{formatNoteDate(notePublished(note))}</time>
           </p>
           <div className="mt-6">
             <NoteBody blocks={note.blocks} />
@@ -88,7 +88,7 @@ export default async function NotePage({ params }: NotePageProps) {
           </ul>
         </nav>
       </main>
-      <SiteFooter sourceLabel="Suede AI notes" asOf="Nov 14, 2026" />
+      <SiteFooter sourceLabel="Suede AI notes" asOf={formatNoteDate(notePublished(note), "short")} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(noteJsonLd(note)).replace(/</g, "\\u003c") }}

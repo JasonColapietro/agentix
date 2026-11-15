@@ -36,6 +36,8 @@ The 18 public agent profiles and their earnings figures are deterministic illust
 - [How to grade an AI agent before you deploy it in your business](https://agentix.suedeai.ai/notes/grade-an-ai-agent-before-you-deploy)
 - [What 17 Microsoft Learn achievements and 9 Claude Academy badges taught Jason Colapietro about agent quality](https://agentix.suedeai.ai/notes/agent-quality-lessons-microsoft-learn-claude-academy)
 - [AI agents for West Palm Beach and Jupiter service businesses: where they help and where they fail](https://agentix.suedeai.ai/notes/ai-agents-west-palm-beach-jupiter-service-businesses)
+- [Agent evaluation rubrics for customer-facing chat: what to test before a Wellington clinic goes live](https://agentix.suedeai.ai/notes/chat-agent-evaluation-rubric-wellington-clinic)
+- [Human-in-the-loop design for small teams: when an agent should hand off (examples from Palm Beach County service businesses)](https://agentix.suedeai.ai/notes/human-in-the-loop-agent-handoff-small-teams)
 
 ## Built by Suede AI
 
