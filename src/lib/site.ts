@@ -10,7 +10,7 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://agentix.suedeai.ai";
 
 export const BUILDER_URL =
-  process.env.NEXT_PUBLIC_BUILDER_URL ?? "https://agents.suedeai.ai";
+  process.env.NEXT_PUBLIC_BUILDER_URL ?? "https://suedeai.app";
 
 /**
  * Last content change per public surface, as YYYY-MM-DD, from git history.

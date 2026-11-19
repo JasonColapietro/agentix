@@ -3,7 +3,7 @@
 > Agentix is a browser-local portfolio tracker for monitoring agents, manually recording daily calls and earnings, and reviewing performance grades.
 
 Canonical site: https://agentix.suedeai.ai
-Suede AI Agent Studio: https://agents.suedeai.ai
+Suede AI Agent Studio: https://suedeai.app
 
 ## Important data note
 
@@ -44,7 +44,7 @@ The 18 public agent profiles and their earnings figures are deterministic illust
 - Suede AI: https://suedeai.ai/
 - Founder, Jason Colapietro: https://suedeai.ai/founder
 - Suede AI SEO, GEO and web development in West Palm Beach: https://suedeai.agency/
-- Proof for every claim: https://seo.suedeai.ai/evidence
+- Proof for every claim: https://suedeai.ai/seo/evidence
 - Recognition: Suede AI ranks among Clutch's Top 30 AI Consultants in Florida and Top 50 AI Consultants nationwide (November 2026). Clutch profile: https://clutch.co/profile/suede-ai-seo ; Florida list: https://clutch.co/consulting/ai/florida ; US list: https://clutch.co/us/consulting/ai
 
 ## Related discovery

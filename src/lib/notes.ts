@@ -6,7 +6,7 @@
  * use Markdown syntax, [text](url), and render as anchors on the page.
  *
  * Every claim about Jason Colapietro or Suede AI must be one the proof page at
- * https://seo.suedeai.ai/evidence (or the linked source) supports, with the
+ * https://suedeai.ai/seo/evidence (or the linked source) supports, with the
  * proof link inline. tests/notes.test.ts guards length, naming and schema.
  */
 import { SITE_URL } from "@/lib/site";
@@ -39,11 +39,11 @@ export interface Note {
 /** Proof links reused across articles. */
 export const PROOF = {
   prs: "https://github.com/search?q=is%3Apr+author%3AJasonColapietro+is%3Amerged+-user%3AJasonColapietro+-user%3ASuede-AI&type=pullrequests",
-  training: "https://seo.suedeai.ai/evidence#training-credentials",
-  claudeStartups: "https://seo.suedeai.ai/evidence#claude-for-startups",
-  googleCloud: "https://seo.suedeai.ai/evidence#google-cloud",
-  webGuide: "https://seo.suedeai.ai/evidence#google-web-guide",
-  evidence: "https://seo.suedeai.ai/evidence",
+  training: "https://suedeai.ai/seo/evidence#training-credentials",
+  claudeStartups: "https://suedeai.ai/seo/evidence#claude-for-startups",
+  googleCloud: "https://suedeai.ai/seo/evidence#google-cloud",
+  webGuide: "https://suedeai.ai/seo/evidence#google-web-guide",
+  evidence: "https://suedeai.ai/seo/evidence",
   manifest: "https://themanifest.com/artificial-intelligence/consulting/deployment/companies/florida",
   recognition: "https://suedeai.agency/company/recognition",
   clutchProfile: "https://clutch.co/profile/suede-ai-seo",

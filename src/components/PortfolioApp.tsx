@@ -50,7 +50,7 @@ export function PortfolioApp() {
           </h1>
           <p className="mb-3" style={{ color: "var(--text-muted)", fontSize: "var(--text-sm)" }}>
             This is the earnings tracker. To build and launch an agent, go to{" "}
-            <a href="https://agents.suedeai.ai" target="_blank" rel="noreferrer" style={{ color: "var(--text-muted)", textDecoration: "underline" }}>
+            <a href="https://suedeai.app" target="_blank" rel="noreferrer" style={{ color: "var(--text-muted)", textDecoration: "underline" }}>
               agents.suedeai.ai
             </a>.
           </p>
